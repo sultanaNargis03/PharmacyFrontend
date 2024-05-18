@@ -1,10 +1,13 @@
 import { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
 const Login = () => {
   const [loginDto, setLoginDto] = useState({
     username: "",
     password: "",
   });
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     console.log(loginDto);
@@ -14,6 +17,8 @@ const Login = () => {
         "http://localhost:8088/Pharmacy/api/auth/login",
         loginDto
       );
+      // navigate("/MedicineList");
+      navigate("/CartList");
     } catch (error) {
       console.error("Failed to login:", error);
     }

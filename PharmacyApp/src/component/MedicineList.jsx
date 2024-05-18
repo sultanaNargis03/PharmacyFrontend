@@ -46,6 +46,7 @@ const MedicineList = () => {
 
             <button onClick={() => deleteMedicine(medicine.id)}>Delete</button>
             <Link to={`/edit/${medicine.id}`}>Edit</Link>
+            <Link to={`/addtocart/${medicine.medicineName}`}>AddToCart</Link>
           </div>
         ))}
       </div>

@@ -16,19 +16,6 @@ const EditMedicine = () => {
   const handleChange = (e) => {
     setMedicine({ ...medicine, [e.target.name]: e.target.value });
   };
-  const fetchMedicine = async () => {
-    try {
-      const result = await axios.get(
-        `http://localhost:8088/Pharmacy/api/medicine/${id}`
-      );
-      setMedicine(result.data);
-    } catch (error) {
-      console.error("Failed to fetch medicine data:", error);
-    }
-  };
-  useEffect(() => {
-    fetchMedicine();
-  }, [id]);
 
   const handleSubmit = async (e) => {
     console.log(medicine);

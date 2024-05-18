@@ -7,6 +7,8 @@ import MedicineList from "./component/MedicineList";
 import EditMedicine from "./component/EditMedicine";
 import Register from "./component/Auth/Register";
 import Login from "./component/Auth/Login";
+import AddToCart from "./component/Cart/AddToCart";
+import CartList from "./component/Cart/CartList";
 
 function App() {
   return (
@@ -18,6 +20,8 @@ function App() {
         <Route path="/medicinelist" element={<MedicineList />} exact />
         <Route path="/addmedicine" element={<AddMedicine />} />
         <Route path="/edit/:id" element={<EditMedicine />} />
+        <Route path="/addtocart/:medicneName" element={<AddToCart />} />
+        <Route path="/cartlist" element={<CartList />} />
       </Routes>
     </Router>
   );
