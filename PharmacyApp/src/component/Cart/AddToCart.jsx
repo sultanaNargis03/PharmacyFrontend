@@ -29,12 +29,20 @@ const AddToCart = () => {
     try {
       await axios.post(
         `http://localhost:8088/Pharmacy/api-cart/cart/${medicineName}`,
-        medicine.medicineQuantity
+        JSON.stringify(medicine.medicineQuantity),
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
       );
-      setCart;
-      console.alert(medicine);
+
+      console.log(cart);
     } catch (error) {
       console.error("Failed to add to cart:", error);
+      console.log(error.response.data);
+      console.log(cart);
+      console.log(medicine);
     }
   };
 

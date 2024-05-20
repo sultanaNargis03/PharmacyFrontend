@@ -17,8 +17,8 @@ const Login = () => {
         "http://localhost:8088/Pharmacy/api/auth/login",
         loginDto
       );
-      // navigate("/MedicineList");
-      navigate("/CartList");
+      navigate("/MedicineList");
+      // navigate("/CartList");
     } catch (error) {
       console.error("Failed to login:", error);
     }

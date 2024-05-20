@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 const EditMedicine = () => {
@@ -11,12 +12,33 @@ const EditMedicine = () => {
     expiryDate: "",
   });
 
-  //const navigate = useNavigate();
+  const navigate = useNavigate();
   const { id } = useParams();
   const handleChange = (e) => {
     setMedicine({ ...medicine, [e.target.name]: e.target.value });
   };
 
+  useEffect(() => {
+    fetchMedicines();
+  }, []);
+
+  const fetchMedicines = async () => {
+    try {
+      const response = await axios.get(
+        `http://localhost:8088/Pharmacy/api/medicine/${id}`
+      );
+      setMedicine({
+        ...medicine,
+        medicineName: response.data.medicineName,
+        medicineComposition: response.data.medicineComposition,
+        medicineQuantity: response.data.medicineQuantity,
+        medicinePrice: response.data.medicinePrice,
+        expiryDate: response.data.expiryDate,
+      });
+    } catch (error) {
+      console.error("Failed to fetch medicines:", error);
+    }
+  };
   const handleSubmit = async (e) => {
     console.log(medicine);
     e.preventDefault();
@@ -25,9 +47,10 @@ const EditMedicine = () => {
         `http://localhost:8088/Pharmacy/api/medicine/${id}`,
         medicine
       );
-      //  navigate("/MedicineList");
+      console.log(medicine);
+      navigate("/MedicineList");
     } catch (error) {
-      console.error("Failed to add medicine:", error);
+      console.error("Failed to update medicine:", error);
     }
   };
   return (
@@ -35,15 +58,16 @@ const EditMedicine = () => {
       <h2>Update Medicine</h2>
       <div>
         <form onSubmit={handleSubmit}>
-          <div>
+          {/* <div>
             <label>Id:</label>
             <input
               type="text"
               name="id"
               value={medicine.id}
+              //placeholder="ID"
               onChange={handleChange}
             />
-          </div>
+          </div> */}
           <div>
             <label>Medicine Name:</label>
             <input

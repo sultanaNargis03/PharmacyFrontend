@@ -18,6 +18,15 @@ const CartList = () => {
       console.error("Failed to fetch carts:", error);
     }
   };
+  const removeCart = async (id) => {
+    try {
+      await axios.delete(`http://localhost:8088/Pharmacy/api-cart/cart/${id}`);
+
+      fetchCarts();
+    } catch (error) {
+      console.error("Failed to remove cart:", error);
+    }
+  };
   return (
     <div>
       <h1>your Cart</h1>
@@ -28,6 +37,8 @@ const CartList = () => {
             <div>Item Name : {c.itemName}</div>
             <div>Item Quantity : {c.itemQuantity}</div>
             <div>Item Price : {c.itemPrice}</div>
+
+            <button onClick={() => removeCart(c.id)}>Remove</button>
           </div>
         ))}
       </div>
