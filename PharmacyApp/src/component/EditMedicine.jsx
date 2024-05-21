@@ -114,7 +114,9 @@ const EditMedicine = () => {
             />
           </div>
           <div>
-            <button type="submit">Update</button>
+            <button className="btn btn-sm btn-dark" type="submit">
+              Update
+            </button>
           </div>
           {/* <div>
           <button type="reset">Clear</button>

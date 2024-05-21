@@ -31,24 +31,40 @@ const MedicineList = () => {
   };
 
   return (
-    <div>
-      <h2>Medicine list</h2>
-      <Link to={"/addmedicine"}>Add Medicine</Link>
-      <div>
-        {medicines.map((medicine) => (
-          <div key={medicine.id}>
-            <div>Id : {medicine.id}</div>
-            <div>Medicine Name : {medicine.medicineName}</div>
-            <div>Medicine Composition : {medicine.medicineComposition}</div>
-            <div>Medicine Quantity : {medicine.medicineQuantity}</div>
-            <div>Medicine Price : {medicine.medicinePrice}</div>
-            <div>Expiry Date : {medicine.expiryDate}</div>
+    <div className="container mt-5">
+      <div class="card h-100">
+        <h2 class="card-title">Medicine list</h2>
+        <Link class="btn btn-link" to={"/addmedicine"}>
+          Add Medicine
+        </Link>
+        <div class="card-body">
+          {medicines.map((medicine) => (
+            <div key={medicine.id}>
+              <div>Id : {medicine.id}</div>
+              <div>Medicine Name : {medicine.medicineName}</div>
+              <div>Medicine Composition : {medicine.medicineComposition}</div>
+              <div>Medicine Quantity : {medicine.medicineQuantity}</div>
+              <div>Medicine Price : {medicine.medicinePrice}</div>
+              <div>Expiry Date : {medicine.expiryDate}</div>
 
-            <button onClick={() => deleteMedicine(medicine.id)}>Delete</button>
-            <Link to={`/edit/${medicine.id}`}>Edit</Link>
-            <Link to={`/addtocart/${medicine.medicineName}`}>AddToCart</Link>
-          </div>
-        ))}
+              <button
+                className="btn btn-sm btn-danger"
+                onClick={() => deleteMedicine(medicine.id)}
+              >
+                Delete
+              </button>
+              <Link class="btn btn-link" to={`/edit/${medicine.id}`}>
+                Edit
+              </Link>
+              <Link
+                class="btn btn-link"
+                to={`/addtocart/${medicine.medicineName}`}
+              >
+                AddToCart
+              </Link>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
