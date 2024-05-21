@@ -34,7 +34,7 @@ const MedicineList = () => {
     <div className="container mt-5">
       <div class="card h-100">
         <h2 class="card-title">Medicine list</h2>
-        <Link class="btn btn-link" to={"/addmedicine"}>
+        <Link className="btn btn-link" to={"/addmedicine"}>
           Add Medicine
         </Link>
         <div class="card-body">

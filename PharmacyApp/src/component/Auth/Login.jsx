@@ -13,10 +13,12 @@ const Login = () => {
     console.log(loginDto);
     e.preventDefault();
     try {
-      await axios.post(
+      const response = await axios.post(
         "http://localhost:8088/Pharmacy/api/auth/login",
         loginDto
       );
+      const token = response.data.token;
+      localStorage.setItem("authToken", token);
       navigate("/MedicineList");
       // navigate("/CartList");
     } catch (error) {

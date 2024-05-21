@@ -10,8 +10,14 @@ const CartList = () => {
 
   const fetchCarts = async () => {
     try {
+      const token = localStorage.getItem("authToken");
       const response = await axios.get(
-        "http://localhost:8088/Pharmacy/api-cart/cart"
+        "http://localhost:8088/Pharmacy/api-cart/cart",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
       setCarts(response.data);
     } catch (error) {
