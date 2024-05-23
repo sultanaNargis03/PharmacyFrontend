@@ -12,25 +12,37 @@ const AddToCart = () => {
     expiryDate: "",
   });
 
-  const [cart, setCart] = useState({
-    itemName: "",
-    itemPrice: "",
-    itemQuantity: "",
-    user: [],
-  });
+  const { medicineName } = useParams();
   const token = getAuthToken();
   console.log("addtocart token1" + token);
   const handleChange = (e) => {
     setMedicine({ ...medicine, [e.target.name]: e.target.value });
   };
 
-  const { medicineName } = useParams();
+  useEffect(() => {
+    fetchMedicine();
+  }, []);
+
+  const fetchMedicine = async () => {
+    try {
+      const response = await axios.get(
+        `http://localhost:8088/Pharmacy/api/getmedicine/${medicineName}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+    } catch (error) {
+      console.error("Failed to fetch medicine:", error);
+    }
+  };
 
   const handleSubmit = async (e) => {
     // console.log(cart);
     e.preventDefault();
     try {
-      await axios.post(
+      const response = await axios.post(
         `http://localhost:8088/Pharmacy/api-cart/cart/${medicineName}`,
         JSON.stringify(medicine.medicineQuantity),
         {
@@ -41,7 +53,7 @@ const AddToCart = () => {
         }
       );
 
-      console.log(cart);
+      console.log(response.data);
     } catch (error) {
       console.error("Failed to add to cart:", error);
       console.log(error.response.data);

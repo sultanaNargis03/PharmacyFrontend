@@ -32,12 +32,14 @@ const MedicineList = () => {
 
   return (
     <div className="container mt-5">
-      <div class="card h-100">
-        <h2 class="card-title">Medicine list</h2>
+      <div className="card h-100">
+        <h2 className="card-title">Medicine list</h2>
+
         <Link className="btn btn-link" to={"/addmedicine"}>
           Add Medicine
         </Link>
-        <div class="card-body">
+
+        <div className="card-body">
           {medicines.map((medicine) => (
             <div key={medicine.id}>
               <div>Id : {medicine.id}</div>
@@ -53,11 +55,11 @@ const MedicineList = () => {
               >
                 Delete
               </button>
-              <Link class="btn btn-link" to={`/edit/${medicine.id}`}>
+              <Link className="btn btn-link" to={`/edit/${medicine.id}`}>
                 Edit
               </Link>
               <Link
-                class="btn btn-link"
+                className="btn btn-link"
                 to={`/addtocart/${medicine.medicineName}`}
               >
                 AddToCart

@@ -14,6 +14,7 @@ const EditMedicine = () => {
 
   const navigate = useNavigate();
   const { id } = useParams();
+  console.log("id: " + id);
   const handleChange = (e) => {
     setMedicine({ ...medicine, [e.target.name]: e.target.value });
   };

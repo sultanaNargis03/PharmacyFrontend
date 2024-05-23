@@ -29,7 +29,7 @@ function App() {
         <Route path="/medicinelist" element={<MedicineList />} exact />
         <Route path="/addmedicine" element={<AddMedicine />} />
         <Route path="/edit/:id" element={<EditMedicine />} />
-        <Route path="/addtocart/:medicneName" element={<AddToCart />} />
+        <Route path="/addtocart/:medicineName" element={<AddToCart />} />
         <Route path="/cartlist" element={<CartList />} />
       </Routes>
       <Footer />
