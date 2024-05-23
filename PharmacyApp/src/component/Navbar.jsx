@@ -7,7 +7,7 @@ const Navbar = () => {
         Pharma
       </Link>
       <Link to="/cartlist" className="navbar-link fs-5 fw-bolder text-white">
-        <BsCart />0
+        <BsCart />
       </Link>
     </div>
   );

@@ -17,6 +17,7 @@ import CartList from "./component/Cart/CartList";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Navbar from "./component/Navbar";
 import Footer from "./component/Footer";
+import Checkout from "./component/Cart/Checkout";
 function App() {
   return (
     <BrowserRouter>
@@ -31,6 +32,7 @@ function App() {
         <Route path="/edit/:id" element={<EditMedicine />} />
         <Route path="/addtocart/:medicineName" element={<AddToCart />} />
         <Route path="/cartlist" element={<CartList />} />
+        <Route path="/checkout" element={<Checkout />} />
       </Routes>
       <Footer />
     </BrowserRouter>

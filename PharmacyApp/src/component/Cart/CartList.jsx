@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { getAuthToken } from "../../helper/axios_helper";
+import { Link } from "react-router-dom";
 
 const CartList = () => {
   const [carts, setCarts] = useState([]);
@@ -49,11 +50,13 @@ const CartList = () => {
             <div>Item Name : {c.itemName}</div>
             <div>Item Quantity : {c.itemQuantity}</div>
             <div>Item Price : {c.itemPrice}</div>
-
             <button onClick={() => removeCart(c.id)}>Remove</button>
           </div>
         ))}
       </div>
+      <Link className="btn btn-link" to={"/checkout"}>
+        checkout
+      </Link>
     </div>
   );
 };
