@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { getAuthToken } from "../../helper/axios_helper";
 
 const AddToCart = () => {
   const [medicine, setMedicine] = useState({
@@ -17,6 +18,8 @@ const AddToCart = () => {
     itemQuantity: "",
     user: [],
   });
+  const token = getAuthToken();
+  console.log("addtocart token1" + token);
   const handleChange = (e) => {
     setMedicine({ ...medicine, [e.target.name]: e.target.value });
   };
@@ -33,6 +36,7 @@ const AddToCart = () => {
         {
           headers: {
             "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
           },
         }
       );

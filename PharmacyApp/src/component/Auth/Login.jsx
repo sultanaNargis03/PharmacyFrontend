@@ -1,6 +1,8 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { doLogin } from "./Auth";
+import { setAuthHeader } from "../../helper/axios_helper";
 
 const Login = () => {
   const [loginDto, setLoginDto] = useState({
@@ -17,14 +19,15 @@ const Login = () => {
         "http://localhost:8088/Pharmacy/api/auth/login",
         loginDto
       );
-      const token = response.data.token;
-      localStorage.setItem("authToken", token);
-      navigate("/MedicineList");
-      // navigate("/CartList");
+      setAuthHeader(response.data.accessToken);
+      // navigate("/MedicineList");
+
+      navigate("/CartList");
     } catch (error) {
       console.error("Failed to login:", error);
     }
   };
+
   const handleChange = (e) => {
     setLoginDto({ ...loginDto, [e.target.name]: e.target.value });
   };

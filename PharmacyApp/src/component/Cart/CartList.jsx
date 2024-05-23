@@ -1,16 +1,17 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { getAuthToken } from "../../helper/axios_helper";
 
 const CartList = () => {
   const [carts, setCarts] = useState([]);
-
+  const token = getAuthToken();
+  console.log("list token1" + token);
   useEffect(() => {
     fetchCarts();
   }, []);
 
   const fetchCarts = async () => {
     try {
-      const token = localStorage.getItem("authToken");
       const response = await axios.get(
         "http://localhost:8088/Pharmacy/api-cart/cart",
         {
@@ -19,6 +20,7 @@ const CartList = () => {
           },
         }
       );
+
       setCarts(response.data);
     } catch (error) {
       console.error("Failed to fetch carts:", error);
@@ -26,7 +28,11 @@ const CartList = () => {
   };
   const removeCart = async (id) => {
     try {
-      await axios.delete(`http://localhost:8088/Pharmacy/api-cart/cart/${id}`);
+      await axios.delete(`http://localhost:8088/Pharmacy/api-cart/cart/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
       fetchCarts();
     } catch (error) {
