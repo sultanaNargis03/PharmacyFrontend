@@ -21,6 +21,7 @@ const Login = () => {
       );
       setAuthHeader(response.data.accessToken);
       // navigate("/MedicineList");
+      console.log(response.data);
 
       navigate("/CartList");
     } catch (error) {

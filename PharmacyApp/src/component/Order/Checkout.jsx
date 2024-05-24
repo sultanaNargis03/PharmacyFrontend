@@ -6,7 +6,6 @@ const Checkout = () => {
   const [checkouts, setCheckouts] = useState([]);
 
   const token = getAuthToken();
-  console.log("list token1" + token);
 
   useEffect(() => {
     fetchOrders();
@@ -15,7 +14,7 @@ const Checkout = () => {
   const fetchOrders = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:8088/Pharmacy/api-cart/cart-checkout",
+        "http://localhost:8088/Pharmacy/api-order/checkout",
         {
           headers: {
             Authorization: `Bearer ${token}`,

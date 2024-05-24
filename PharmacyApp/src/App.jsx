@@ -6,6 +6,7 @@ import {
 } from "react-router-dom";
 import "./App.css";
 import React from "react";
+import { useState, useEffect } from "react";
 import AddMedicine from "./component/AddMedicine";
 import Home from "./component/Home";
 import MedicineList from "./component/MedicineList";
@@ -17,7 +18,8 @@ import CartList from "./component/Cart/CartList";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Navbar from "./component/Navbar";
 import Footer from "./component/Footer";
-import Checkout from "./component/Cart/Checkout";
+import Checkout from "./component/Order/Checkout";
+import OrderList from "./component/Order/OrderList";
 function App() {
   return (
     <BrowserRouter>
@@ -33,6 +35,7 @@ function App() {
         <Route path="/addtocart/:medicineName" element={<AddToCart />} />
         <Route path="/cartlist" element={<CartList />} />
         <Route path="/checkout" element={<Checkout />} />
+        <Route path="/orderlist" element={<OrderList />} />
       </Routes>
       <Footer />
     </BrowserRouter>

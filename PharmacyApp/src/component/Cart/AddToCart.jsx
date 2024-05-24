@@ -14,7 +14,7 @@ const AddToCart = () => {
 
   const { medicineName } = useParams();
   const token = getAuthToken();
-  console.log("addtocart token1" + token);
+
   const handleChange = (e) => {
     setMedicine({ ...medicine, [e.target.name]: e.target.value });
   };
@@ -57,8 +57,6 @@ const AddToCart = () => {
     } catch (error) {
       console.error("Failed to add to cart:", error);
       console.log(error.response.data);
-      console.log(cart);
-      console.log(medicine);
     }
   };
 

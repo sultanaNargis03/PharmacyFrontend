@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { getAuthToken } from "../helper/axios_helper";
 
 const EditMedicine = () => {
   const [medicine, setMedicine] = useState({
@@ -11,7 +12,7 @@ const EditMedicine = () => {
     medicineQuantity: "",
     expiryDate: "",
   });
-
+  const token = getAuthToken();
   const navigate = useNavigate();
   const { id } = useParams();
   console.log("id: " + id);
@@ -26,7 +27,12 @@ const EditMedicine = () => {
   const fetchMedicines = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:8088/Pharmacy/api/medicine/${id}`
+        `http://localhost:8088/Pharmacy/api/medicine/${id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
       setMedicine({
         ...medicine,

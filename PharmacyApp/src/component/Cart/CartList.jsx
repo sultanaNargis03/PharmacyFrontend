@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 const CartList = () => {
   const [carts, setCarts] = useState([]);
   const token = getAuthToken();
-  console.log("list token1" + token);
+
   useEffect(() => {
     fetchCarts();
   }, []);
