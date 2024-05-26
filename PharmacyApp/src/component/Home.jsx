@@ -5,7 +5,8 @@ const Home = () => {
       <h1>Welcome to Pharmacy Management App!!</h1>
       <Link to="/register">Register</Link>
       <div>
-        <Link to="/login">Already registered with us? login here</Link>
+        <span>Already registered with us? </span>
+        <Link to="/login">login here</Link>
       </div>
     </div>
   );

@@ -12,7 +12,7 @@ const EditMedicine = () => {
     medicineQuantity: "",
     expiryDate: "",
   });
-  const token = getAuthToken();
+
   const navigate = useNavigate();
   const { id } = useParams();
   console.log("id: " + id);
@@ -27,12 +27,7 @@ const EditMedicine = () => {
   const fetchMedicines = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:8088/Pharmacy/api/medicine/${id}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
+        `http://localhost:8088/Pharmacy/api/medicine/${id}`
       );
       setMedicine({
         ...medicine,

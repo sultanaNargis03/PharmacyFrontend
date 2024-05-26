@@ -13,12 +13,7 @@ const MedicineList = () => {
   const fetchMedicines = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:8088/Pharmacy/api/medicine",
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
+        "http://localhost:8088/Pharmacy/api/medicine"
       );
       setMedicines(response.data);
     } catch (error) {
@@ -28,11 +23,7 @@ const MedicineList = () => {
 
   const deleteMedicine = async (id) => {
     try {
-      await axios.delete(`http://localhost:8088/Pharmacy/api/medicine/${id}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      await axios.delete(`http://localhost:8088/Pharmacy/api/medicine/${id}`);
 
       fetchMedicines();
     } catch (error) {
