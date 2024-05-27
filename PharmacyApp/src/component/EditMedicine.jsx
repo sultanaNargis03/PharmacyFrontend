@@ -46,7 +46,7 @@ const EditMedicine = () => {
     e.preventDefault();
     try {
       await axios.put(
-        `http://localhost:8088/Pharmacy/api/medicine/${id}`,
+        `http://localhost:8088/Pharmacy/api/update-medicine/${id}`,
         medicine
       );
       console.log(medicine);

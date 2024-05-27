@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { getAuthToken } from "../../helper/axios_helper";
+import { Link } from "react-router-dom";
 
 const AddToCart = () => {
   const [medicine, setMedicine] = useState({
@@ -75,6 +76,9 @@ const AddToCart = () => {
         </div>
         <div>
           <button type="submit">Add to cart</button>
+          <Link className="btn btn-link" to={"/cartlist"}>
+            Go to cart
+          </Link>
         </div>
       </form>
     </div>
