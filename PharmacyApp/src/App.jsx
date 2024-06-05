@@ -7,10 +7,10 @@ import {
 import "./App.css";
 import React from "react";
 import { useState, useEffect } from "react";
-import AddMedicine from "./component/AddMedicine";
 import Home from "./component/Home";
-import MedicineList from "./component/MedicineList";
-import EditMedicine from "./component/EditMedicine";
+import AddMedicine from "./component/Medicine/AddMedicine";
+import MedicineList from "./component/Medicine/MedicineList";
+import EditMedicine from "./component/Medicine/EditMedicine";
 import Register from "./component/Auth/Register";
 import Login from "./component/Auth/Login";
 import AddToCart from "./component/Cart/AddToCart";
@@ -20,6 +20,7 @@ import Navbar from "./component/Navbar";
 import Footer from "./component/Footer";
 import Checkout from "./component/Order/Checkout";
 import OrderList from "./component/Order/OrderList";
+
 function App() {
   return (
     <BrowserRouter>

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { getAuthToken } from "../../helper/axios_helper";
 
 const AddMedicine = () => {
   const [medicine, setMedicine] = useState({
@@ -10,6 +11,7 @@ const AddMedicine = () => {
     medicineQuantity: "",
     expiryDate: "",
   });
+  const token = getAuthToken();
 
   const navigate = useNavigate();
 
@@ -21,7 +23,17 @@ const AddMedicine = () => {
     console.log(medicine);
     e.preventDefault();
     try {
-      await axios.post("http://localhost:8088/Pharmacy/api/medicine", medicine);
+      await axios.post(
+        "http://localhost:8088/Pharmacy/api/medicine",
+        // medicine
+        JSON.stringify(medicine),
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       navigate("/MedicineList");
     } catch (error) {
       console.error("Failed to add medicine:", error);

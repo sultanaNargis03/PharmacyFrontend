@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { getAuthToken } from "../helper/axios_helper";
+import { getAuthToken } from "../../helper/axios_helper";
 
 const EditMedicine = () => {
   const [medicine, setMedicine] = useState({
@@ -15,6 +15,7 @@ const EditMedicine = () => {
 
   const navigate = useNavigate();
   const { id } = useParams();
+  const token = getAuthToken();
   console.log("id: " + id);
   const handleChange = (e) => {
     setMedicine({ ...medicine, [e.target.name]: e.target.value });
@@ -27,7 +28,14 @@ const EditMedicine = () => {
   const fetchMedicines = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:8088/Pharmacy/api/medicine/${id}`
+        `http://localhost:8088/Pharmacy/api/medicine/${id}`,
+
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
       setMedicine({
         ...medicine,
@@ -47,7 +55,13 @@ const EditMedicine = () => {
     try {
       await axios.put(
         `http://localhost:8088/Pharmacy/api/update-medicine/${id}`,
-        medicine
+        JSON.stringify(medicine),
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
       console.log(medicine);
       navigate("/MedicineList");

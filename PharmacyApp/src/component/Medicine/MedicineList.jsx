@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import { getAuthToken } from "../helper/axios_helper";
+import { getAuthToken } from "../../helper/axios_helper";
 
 const MedicineList = () => {
   const [medicines, setMedicines] = useState([]);
@@ -13,7 +13,13 @@ const MedicineList = () => {
   const fetchMedicines = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:8088/Pharmacy/api/medicine"
+        "http://localhost:8088/Pharmacy/api/medicine",
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
       setMedicines(response.data);
     } catch (error) {
@@ -23,7 +29,12 @@ const MedicineList = () => {
 
   const deleteMedicine = async (id) => {
     try {
-      await axios.delete(`http://localhost:8088/Pharmacy/api/medicine/${id}`);
+      await axios.delete(`http://localhost:8088/Pharmacy/api/medicine/${id}`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
       fetchMedicines();
     } catch (error) {
