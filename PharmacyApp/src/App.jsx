@@ -20,6 +20,9 @@ import Navbar from "./component/Navbar";
 import Footer from "./component/Footer";
 import Checkout from "./component/Order/Checkout";
 import OrderList from "./component/Order/OrderList";
+import Decode from "./component/Auth/Decode";
+import AdminHome from "./component/AdminHome";
+import UserHome from "./component/UserHome";
 
 function App() {
   return (
@@ -37,6 +40,9 @@ function App() {
         <Route path="/cartlist" element={<CartList />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/orderlist" element={<OrderList />} />
+        <Route path="/decode" element={<Decode />} />
+        <Route path="/adminhome" element={<AdminHome />} />
+        <Route path="/userhome" element={<UserHome />} />
       </Routes>
       <Footer />
     </BrowserRouter>

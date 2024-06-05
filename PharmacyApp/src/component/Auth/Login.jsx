@@ -20,7 +20,8 @@ const Login = () => {
         loginDto
       );
       setAuthHeader(response.data.accessToken);
-      navigate("/MedicineList");
+      navigate("/Decode");
+      //navigate("/MedicineList");
       console.log(response.data);
     } catch (error) {
       console.error("Failed to login:", error);
