@@ -5,6 +5,7 @@ import { getAuthToken } from "../../helper/axios_helper";
 
 const MedicineListAdmin = () => {
   const [medicines, setMedicines] = useState([]);
+  const [filterData, setFilterData] = useState([]);
   const token = getAuthToken();
   useEffect(() => {
     fetchMedicines();
@@ -22,11 +23,18 @@ const MedicineListAdmin = () => {
         }
       );
       setMedicines(response.data);
+      setFilterData(response.data);
     } catch (error) {
       console.error("Failed to fetch medicines:", error);
     }
   };
-
+  const handleFilter = (event) => {
+    setFilterData(
+      medicines.filter((f) =>
+        f.medicineName.toLowerCase().includes(event.target.value)
+      )
+    );
+  };
   const deleteMedicine = async (id) => {
     try {
       await axios.delete(`http://localhost:8088/Pharmacy/api/medicine/${id}`, {
@@ -52,7 +60,14 @@ const MedicineListAdmin = () => {
         </Link>
 
         <div className="card-body">
-          {medicines.map((medicine) => (
+          <div className="Search">
+            <input
+              type="text"
+              onChange={handleFilter}
+              placeholder="Search Here..."
+            />
+          </div>
+          {filterData.map((medicine) => (
             <div key={medicine.id}>
               <div>Id : {medicine.id}</div>
               <div>Medicine Name : {medicine.medicineName}</div>

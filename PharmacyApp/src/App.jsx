@@ -25,6 +25,7 @@ import UserHome from "./component/UserHome";
 import Dashboard from "./component/Dashboard";
 import MedicineListAdmin from "./component/Medicine/MedicineListAdmin";
 import MedicineListUser from "./component/Medicine/MedicineListUser";
+import SearchMedicine from "./component/Medicine/SearchMedicine";
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
         <Route path="/navbar" element={<Navbar />} exact />
         <Route path="/register" element={<Register />} exact />
         <Route path="/login" element={<Login />} exact />
+        <Route path="/searchmedicine" element={<SearchMedicine />} exact />
 
         <Route
           path="/medicinelistadmin"

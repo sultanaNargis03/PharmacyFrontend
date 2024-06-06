@@ -2,10 +2,13 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { getAuthToken } from "../../helper/axios_helper";
+import "../Medicine/SearchMedicine.css";
 
 const MedicineListUser = () => {
   const [medicines, setMedicines] = useState([]);
+  const [filterData, setFilterData] = useState([]);
   const token = getAuthToken();
+
   useEffect(() => {
     fetchMedicines();
   }, []);
@@ -22,33 +25,32 @@ const MedicineListUser = () => {
         }
       );
       setMedicines(response.data);
+      setFilterData(response.data);
     } catch (error) {
       console.error("Failed to fetch medicines:", error);
     }
   };
-
-  const deleteMedicine = async (id) => {
-    try {
-      await axios.delete(`http://localhost:8088/Pharmacy/api/medicine/${id}`, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      });
-
-      fetchMedicines();
-    } catch (error) {
-      console.error("Failed to delete medicine:", error);
-    }
+  const handleFilter = (event) => {
+    setFilterData(
+      medicines.filter((f) =>
+        f.medicineName.toLowerCase().includes(event.target.value)
+      )
+    );
   };
-
   return (
     <div className="container mt-5">
       <div className="card h-100">
         <h2 className="card-title">Medicine list</h2>
 
         <div className="card-body">
-          {medicines.map((medicine) => (
+          <div className="Search">
+            <input
+              type="text"
+              onChange={handleFilter}
+              placeholder="Search Here..."
+            />
+          </div>
+          {filterData.map((medicine) => (
             <div key={medicine.id}>
               <div>Id : {medicine.id}</div>
               <div>Medicine Name : {medicine.medicineName}</div>
