@@ -1,7 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { doLogin } from "./Auth";
 import { setAuthHeader } from "../../helper/axios_helper";
 
 const Login = () => {
@@ -9,6 +8,7 @@ const Login = () => {
     username: "",
     password: "",
   });
+
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -20,7 +20,7 @@ const Login = () => {
         loginDto
       );
       setAuthHeader(response.data.accessToken);
-      navigate("/Decode");
+      navigate("/Dashboard");
       //navigate("/MedicineList");
       console.log(response.data);
     } catch (error) {
@@ -44,21 +44,20 @@ const Login = () => {
             onChange={handleChange}
           />
         </div>
+
         <div>
           <label>PASSWORD:</label>
           <input
-            type="text"
+            type="password"
             name="password"
             value={loginDto.password}
             onChange={handleChange}
           />
         </div>
+
         <div>
           <button type="submit">Login</button>
         </div>
-        {/* <div>
-          <button type="reset">Clear</button>
-        </div> */}
       </form>
     </div>
   );

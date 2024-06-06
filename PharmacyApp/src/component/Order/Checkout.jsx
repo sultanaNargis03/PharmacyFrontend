@@ -32,7 +32,9 @@ const Checkout = () => {
     <div>
       <h1>your order details</h1>
       <div>
-        <div>your Order has been sucessfully placed with: {checkouts.id}</div>
+        <div>
+          your Order has been sucessfully placed with order id: {checkouts.id}
+        </div>
         <div>Total Quantity : {checkouts.totalItem}</div>
         <div>Total Price : {checkouts.totalPrice}</div>
         <div>

@@ -16,7 +16,7 @@ const EditMedicine = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const token = getAuthToken();
-  console.log("id: " + id);
+
   const handleChange = (e) => {
     setMedicine({ ...medicine, [e.target.name]: e.target.value });
   };
@@ -64,7 +64,7 @@ const EditMedicine = () => {
         }
       );
       console.log(medicine);
-      navigate("/MedicineList");
+      navigate("/MedicineListAdmin");
     } catch (error) {
       console.error("Failed to update medicine:", error);
     }

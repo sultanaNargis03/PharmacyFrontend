@@ -34,13 +34,11 @@ const OrderList = () => {
         Order Items are:
         <ul>
           {Orders.map((order) => (
-            <li>
-              <div key={order.id}>
-                <div>Id : {order.id}</div>
-                <div>Medicine Name : {order.itemNames}</div>
-                <div>Total Items: {order.totalItems}</div>
-                <div>Total Price: {order.totalPrice}</div>
-              </div>
+            <li key={order.id}>
+              <div>Id : {order.id}</div>
+              <div>Medicine Name : {order.itemNames}</div>
+              <div>Total Items: {order.totalItem}</div>
+              <div>Total Price: {order.totalPrice}</div>
             </li>
           ))}
         </ul>

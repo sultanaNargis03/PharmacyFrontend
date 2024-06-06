@@ -3,7 +3,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { getAuthToken } from "../../helper/axios_helper";
 
-const MedicineList = () => {
+const MedicineListUser = () => {
   const [medicines, setMedicines] = useState([]);
   const token = getAuthToken();
   useEffect(() => {
@@ -47,10 +47,6 @@ const MedicineList = () => {
       <div className="card h-100">
         <h2 className="card-title">Medicine list</h2>
 
-        <Link className="btn btn-link" to={"/addmedicine"}>
-          Add Medicine
-        </Link>
-
         <div className="card-body">
           {medicines.map((medicine) => (
             <div key={medicine.id}>
@@ -60,16 +56,6 @@ const MedicineList = () => {
               <div>Medicine Quantity : {medicine.medicineQuantity}</div>
               <div>Medicine Price : {medicine.medicinePrice}</div>
               <div>Expiry Date : {medicine.expiryDate}</div>
-
-              <button
-                className="btn btn-sm btn-danger"
-                onClick={() => deleteMedicine(medicine.id)}
-              >
-                Delete
-              </button>
-              <Link className="btn btn-link" to={`/edit/${medicine.id}`}>
-                Edit
-              </Link>
               <Link
                 className="btn btn-link"
                 to={`/addtocart/${medicine.medicineName}`}
@@ -83,4 +69,4 @@ const MedicineList = () => {
     </div>
   );
 };
-export default MedicineList;
+export default MedicineListUser;

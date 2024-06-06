@@ -34,7 +34,7 @@ const AddMedicine = () => {
           },
         }
       );
-      navigate("/MedicineList");
+      navigate("/MedicineListAdmin");
     } catch (error) {
       console.error("Failed to add medicine:", error);
     }
