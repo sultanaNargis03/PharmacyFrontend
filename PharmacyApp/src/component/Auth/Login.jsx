@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { setAuthHeader } from "../../helper/axios_helper";
+import { doLogin, isLoggedIn } from "./Auth";
 
 const Login = () => {
   const [loginDto, setLoginDto] = useState({
@@ -10,21 +11,28 @@ const Login = () => {
   });
 
   const navigate = useNavigate();
-
   const handleSubmit = async (e) => {
     console.log(loginDto);
     e.preventDefault();
     try {
+      if (loginDto.username.trim() == "" || loginDto.password.trim() == "") {
+        //toast.error("Username or password is required")
+        return;
+      }
       const response = await axios.post(
         "http://localhost:8088/Pharmacy/api/auth/login",
         loginDto
       );
+      //toast.success("login sucess");
+      console.log(response);
+      doLogin(response);
+      isLoggedIn();
       setAuthHeader(response.data.accessToken);
       navigate("/Dashboard");
       //navigate("/MedicineList");
-      console.log(response.data);
     } catch (error) {
       console.error("Failed to login:", error);
+      //toast.error("username or password not correct")
     }
   };
 

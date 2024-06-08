@@ -3,6 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { getAuthToken } from "../../helper/axios_helper";
+import Navbar from "../Navbar";
 
 const EditMedicine = () => {
   const [medicine, setMedicine] = useState({
@@ -71,6 +72,7 @@ const EditMedicine = () => {
   };
   return (
     <div>
+      <Navbar />
       <h2>Update Medicine</h2>
       <div>
         <form onSubmit={handleSubmit}>

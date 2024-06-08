@@ -1,20 +1,13 @@
-import { getRole } from "../helper/axios_helper";
 import AdminHome from "./AdminHome";
+import Navbar from "./Navbar";
 import UserHome from "./UserHome";
 
 const Dashboard = () => {
-  const role = getRole();
-  if (role == "admin")
-    return (
-      <div>
-        <AdminHome />
-      </div>
-    );
-  if (role == "user")
-    return (
-      <div>
-        <UserHome />
-      </div>
-    );
+  return (
+    <div>
+      <Navbar />
+      <UserHome />
+    </div>
+  );
 };
 export default Dashboard;

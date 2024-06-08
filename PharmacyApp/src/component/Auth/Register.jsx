@@ -19,6 +19,7 @@ const Register = () => {
         "http://localhost:8088/Pharmacy/api/auth/register",
         registerDto
       );
+      navigate("/login");
     } catch (error) {
       console.error("Failed to register user:", error);
     }

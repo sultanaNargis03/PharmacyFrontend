@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { getAuthToken } from "../../helper/axios_helper";
+import Navbar from "../Navbar";
 
 const OrderList = () => {
   const [Orders, setOrders] = useState([]);
+
   const token = getAuthToken();
 
   useEffect(() => {
@@ -29,6 +31,7 @@ const OrderList = () => {
 
   return (
     <div>
+      <Navbar />
       <h1>your order details</h1>
       <div>
         Order Items are:
@@ -36,7 +39,14 @@ const OrderList = () => {
           {Orders.map((order) => (
             <li key={order.id}>
               <div>Id : {order.id}</div>
-              <div>Medicine Name : {order.itemNames}</div>
+              <div>
+                Medicine Name :{" "}
+                <ul>
+                  {order.itemNames.map((name, index) => (
+                    <li key={index}>{name}</li>
+                  ))}
+                </ul>
+              </div>
               <div>Total Items: {order.totalItem}</div>
               <div>Total Price: {order.totalPrice}</div>
             </li>

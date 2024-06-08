@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { getAuthToken } from "../../helper/axios_helper";
+import Navbar from "../Navbar";
 
 const Checkout = () => {
   const [checkouts, setCheckouts] = useState([]);
@@ -30,6 +31,7 @@ const Checkout = () => {
 
   return (
     <div>
+      <Navbar />
       <h1>your order details</h1>
       <div>
         <div>

@@ -3,6 +3,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { getAuthToken } from "../../helper/axios_helper";
 import { Link } from "react-router-dom";
+import Navbar from "../Navbar";
 
 const AddToCart = () => {
   const [medicine, setMedicine] = useState({
@@ -63,6 +64,7 @@ const AddToCart = () => {
 
   return (
     <div>
+      <Navbar />
       <h2>Add To Cart!!</h2>
       <form onSubmit={handleSubmit}>
         <div>

@@ -25,18 +25,21 @@ import UserHome from "./component/UserHome";
 import Dashboard from "./component/Dashboard";
 import MedicineListAdmin from "./component/Medicine/MedicineListAdmin";
 import MedicineListUser from "./component/Medicine/MedicineListUser";
-import SearchMedicine from "./component/Medicine/SearchMedicine";
+import Sidebar from "./component/Sidebar";
+import Logout from "./component/Auth/Logout";
 
 function App() {
   return (
     <BrowserRouter>
-      <Navbar />
+      {/* <Navbar /> */}
+      <Sidebar />
       <Routes>
+        <Route path="/sidebar" element={<Sidebar />} exact />
         <Route path="/" element={<Home />} exact />
         <Route path="/navbar" element={<Navbar />} exact />
         <Route path="/register" element={<Register />} exact />
         <Route path="/login" element={<Login />} exact />
-        <Route path="/searchmedicine" element={<SearchMedicine />} exact />
+        <Route path="/logout" element={<Logout />} exact />
 
         <Route
           path="/medicinelistadmin"

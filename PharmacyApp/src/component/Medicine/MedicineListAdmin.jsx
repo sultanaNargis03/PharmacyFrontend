@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { getAuthToken } from "../../helper/axios_helper";
+import Navbar from "../Navbar";
 
 const MedicineListAdmin = () => {
   const [medicines, setMedicines] = useState([]);
@@ -51,42 +52,46 @@ const MedicineListAdmin = () => {
   };
 
   return (
-    <div className="container mt-5">
-      <div className="card h-100">
-        <h2 className="card-title">Medicine list</h2>
+    <div>
+      <Navbar />
 
-        <Link className="btn btn-link" to={"/addmedicine"}>
-          Add Medicine
-        </Link>
+      <div className="container mt-5">
+        <div className="card h-100">
+          <h2 className="card-title">Medicine list</h2>
 
-        <div className="card-body">
-          <div className="Search">
-            <input
-              type="text"
-              onChange={handleFilter}
-              placeholder="Search Here..."
-            />
-          </div>
-          {filterData.map((medicine) => (
-            <div key={medicine.id}>
-              <div>Id : {medicine.id}</div>
-              <div>Medicine Name : {medicine.medicineName}</div>
-              <div>Medicine Composition : {medicine.medicineComposition}</div>
-              <div>Medicine Quantity : {medicine.medicineQuantity}</div>
-              <div>Medicine Price : {medicine.medicinePrice}</div>
-              <div>Expiry Date : {medicine.expiryDate}</div>
+          <Link className="btn btn-link" to={"/addmedicine"}>
+            Add Medicine
+          </Link>
 
-              <button
-                className="btn btn-sm btn-danger"
-                onClick={() => deleteMedicine(medicine.id)}
-              >
-                Delete
-              </button>
-              <Link className="btn btn-link" to={`/edit/${medicine.id}`}>
-                Edit
-              </Link>
+          <div className="card-body">
+            <div className="Search">
+              <input
+                type="text"
+                onChange={handleFilter}
+                placeholder="Search Medicines"
+              />
             </div>
-          ))}
+            {filterData.map((medicine) => (
+              <div key={medicine.id}>
+                <div>Id : {medicine.id}</div>
+                <div>Medicine Name : {medicine.medicineName}</div>
+                <div>Medicine Composition : {medicine.medicineComposition}</div>
+                <div>Medicine Quantity : {medicine.medicineQuantity}</div>
+                <div>Medicine Price : {medicine.medicinePrice}</div>
+                <div>Expiry Date : {medicine.expiryDate}</div>
+
+                <button
+                  className="btn btn-sm btn-danger"
+                  onClick={() => deleteMedicine(medicine.id)}
+                >
+                  Delete
+                </button>
+                <Link className="btn btn-link" to={`/edit/${medicine.id}`}>
+                  Edit
+                </Link>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>

@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { getAuthToken } from "../../helper/axios_helper";
 import { Link } from "react-router-dom";
+import Navbar from "../Navbar";
 
 const CartList = () => {
   const [carts, setCarts] = useState([]);
@@ -27,6 +28,7 @@ const CartList = () => {
       console.error("Failed to fetch carts:", error);
     }
   };
+
   const removeCart = async (id) => {
     try {
       await axios.delete(`http://localhost:8088/Pharmacy/api-cart/cart/${id}`, {
@@ -42,6 +44,7 @@ const CartList = () => {
   };
   return (
     <div>
+      <Navbar />
       <h1>your Cart</h1>
       <div>
         {carts.map((c) => (
