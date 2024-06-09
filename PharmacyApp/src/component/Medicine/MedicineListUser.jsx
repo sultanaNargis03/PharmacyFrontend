@@ -3,7 +3,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { getAuthToken } from "../../helper/axios_helper";
 import "../Search.css";
-import Navbar from "../Navbar";
+import CustomNavbar from "../CustomNavbar";
 
 const MedicineListUser = () => {
   const [filterData, setFilterData] = useState([]);
@@ -40,8 +40,6 @@ const MedicineListUser = () => {
   };
   return (
     <div>
-      <Navbar />
-
       <div className="container mt-5">
         <div className="card h-100">
           <h2 className="card-title">Medicine list</h2>

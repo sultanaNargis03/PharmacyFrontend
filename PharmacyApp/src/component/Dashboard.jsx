@@ -1,11 +1,11 @@
 import AdminHome from "./AdminHome";
-import Navbar from "./Navbar";
+import CustomNavbar from "./CustomNavbar";
+
 import UserHome from "./UserHome";
 
 const Dashboard = () => {
   return (
     <div>
-      <Navbar />
       <UserHome />
     </div>
   );

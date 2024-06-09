@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { getAuthToken } from "../../helper/axios_helper";
 import { Link } from "react-router-dom";
-import Navbar from "../Navbar";
+import CustomNavbar from "../CustomNavbar";
 
 const CartList = () => {
   const [carts, setCarts] = useState([]);
@@ -44,7 +44,6 @@ const CartList = () => {
   };
   return (
     <div>
-      <Navbar />
       <h1>your Cart</h1>
       <div>
         {carts.map((c) => (

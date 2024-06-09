@@ -16,7 +16,7 @@ import Login from "./component/Auth/Login";
 import AddToCart from "./component/Cart/AddToCart";
 import CartList from "./component/Cart/CartList";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Navbar from "./component/Navbar";
+// import Navbar from "./component/Navbar";
 import Footer from "./component/Footer";
 import Checkout from "./component/Order/Checkout";
 import OrderList from "./component/Order/OrderList";
@@ -27,16 +27,17 @@ import MedicineListAdmin from "./component/Medicine/MedicineListAdmin";
 import MedicineListUser from "./component/Medicine/MedicineListUser";
 import Sidebar from "./component/Sidebar";
 import Logout from "./component/Auth/Logout";
+import CustomNavbar from "./component/CustomNavbar";
 
 function App() {
   return (
     <BrowserRouter>
-      {/* <Navbar /> */}
-      <Sidebar />
+      <CustomNavbar />
+      {/* <Sidebar /> */}
       <Routes>
         <Route path="/sidebar" element={<Sidebar />} exact />
         <Route path="/" element={<Home />} exact />
-        <Route path="/navbar" element={<Navbar />} exact />
+        <Route path="/navbar" element={<CustomNavbar />} exact />
         <Route path="/register" element={<Register />} exact />
         <Route path="/login" element={<Login />} exact />
         <Route path="/logout" element={<Logout />} exact />

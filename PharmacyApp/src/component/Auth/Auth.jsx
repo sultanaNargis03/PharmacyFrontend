@@ -4,17 +4,19 @@ export const getToken = () => {
 };
 export const isLoggedIn = () => {
   let data = localStorage.getItem("data");
-  console.log("data boolean:" + data);
+  // console.log("data boolean:" + data);
   if (data == null) return false;
   else return true;
 };
 //doLogin=>
 
-export const doLogin = (data) => {
+export const doLogin = (data, next) => {
   localStorage.setItem("data", JSON.stringify(data));
+  next();
 };
 
 //doLogout=>remove from localstorage
-export const doLogout = () => {
+export const doLogout = (next) => {
   localStorage.removeItem("data");
+  next();
 };

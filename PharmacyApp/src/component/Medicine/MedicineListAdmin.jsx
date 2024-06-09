@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { getAuthToken } from "../../helper/axios_helper";
-import Navbar from "../Navbar";
+import CustomNavbar from "../CustomNavbar";
 
 const MedicineListAdmin = () => {
   const [medicines, setMedicines] = useState([]);
@@ -53,8 +53,6 @@ const MedicineListAdmin = () => {
 
   return (
     <div>
-      <Navbar />
-
       <div className="container mt-5">
         <div className="card h-100">
           <h2 className="card-title">Medicine list</h2>

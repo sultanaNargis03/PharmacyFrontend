@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { setAuthHeader } from "../../helper/axios_helper";
 import { doLogin, isLoggedIn } from "./Auth";
 
@@ -24,12 +24,11 @@ const Login = () => {
         loginDto
       );
       //toast.success("login sucess");
-      console.log(response);
-      doLogin(response);
-      isLoggedIn();
       setAuthHeader(response.data.accessToken);
+      doLogin(response, () => {
+        console.log("saved!");
+      });
       navigate("/Dashboard");
-      //navigate("/MedicineList");
     } catch (error) {
       console.error("Failed to login:", error);
       //toast.error("username or password not correct")
@@ -64,7 +63,13 @@ const Login = () => {
         </div>
 
         <div>
-          <button type="submit">Login</button>
+          <button type="submit">Sign In</button>
+        </div>
+        <div>
+          <span>Don't have an account yet?</span>
+          <Link className="btn btn-link" to={"/register"}>
+            Sign Up
+          </Link>
         </div>
       </form>
     </div>

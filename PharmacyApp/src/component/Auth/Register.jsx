@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Register = () => {
   const [registerDto, setRegisterDto] = useState({
@@ -68,11 +68,14 @@ const Register = () => {
           />
         </div>
         <div>
-          <button type="submit">Register</button>
+          <button type="submit">Sign Up</button>
         </div>
-        {/* <div>
-          <button type="reset">Clear</button>
-        </div> */}
+        <div>
+          <span>Already have an account?</span>
+          <Link className="btn btn-link" to={"/login"}>
+            Sign In
+          </Link>
+        </div>
       </form>
     </div>
   );
