@@ -33,7 +33,7 @@ const OrderList = () => {
     <div>
       <h1>your order details</h1>
       <div>
-        Order Items are:
+        Order Items:
         <ul>
           {Orders.map((order) => (
             <li key={order.id}>

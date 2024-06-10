@@ -1,13 +1,10 @@
-import { Link } from "react-router-dom";
+import { getUsername } from "../helper/axios_helper";
+
 const Home = () => {
+  const username = getUsername();
   return (
     <div>
-      <h1>Welcome to Pharmacy Management App!!</h1>
-      <Link to="/register">Register</Link>
-      <div>
-        <span>Already registered with us? </span>
-        <Link to="/login">login here</Link>
-      </div>
+      <h3>Hello {username}! Welcome To PMA</h3>
     </div>
   );
 };

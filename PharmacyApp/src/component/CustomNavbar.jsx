@@ -1,7 +1,7 @@
 import { NavLink as ReactLink, useNavigate } from "react-router-dom";
 import { BsCart } from "react-icons/bs";
 import { useEffect, useState } from "react";
-import { doLogout, isLoggedIn } from "./Auth/Auth";
+import { doLogout, getCurrentUserRole, isLoggedIn } from "./Auth/Auth";
 import { FaBars, FaSearch } from "react-icons/fa";
 import {
   Collapse,
@@ -11,17 +11,15 @@ import {
   Nav,
   NavItem,
   NavLink,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
   NavbarText,
 } from "reactstrap";
 import { getUsername } from "../helper/axios_helper";
 
 const CustomNavbar = () => {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const [login, setLogin] = useState(false);
+  const [role, setRole] = useState(undefined);
+
   const username = getUsername();
   const navigate = useNavigate();
 
@@ -33,6 +31,7 @@ const CustomNavbar = () => {
   };
   useEffect(() => {
     setLogin(isLoggedIn());
+    setRole(getCurrentUserRole());
   }, [login]);
 
   return (
@@ -43,7 +42,50 @@ const CustomNavbar = () => {
         </NavbarBrand>
         <NavbarToggler onClick={() => setIsOpen(!isOpen)}></NavbarToggler>
         <Collapse isOpen={isOpen} navbar>
-          <Nav className="me-auto" navbar></Nav>
+          <Nav className="me-auto" navbar>
+            {login && (
+              <>
+                <NavItem>
+                  <NavLink tag={ReactLink} to="/home">
+                    Home
+                  </NavLink>
+                </NavItem>
+              </>
+            )}
+            {login && role.includes("ADMIN") && (
+              <>
+                <NavItem>
+                  <NavLink tag={ReactLink} to="/medicinelistadmin">
+                    Medicines
+                  </NavLink>
+                </NavItem>
+                <NavItem>
+                  <NavLink tag={ReactLink} to="/addmedicine">
+                    Add Medicine
+                  </NavLink>
+                </NavItem>
+              </>
+            )}
+            {login && role.includes("USER") && (
+              <>
+                <NavItem>
+                  <NavLink tag={ReactLink} to="/medicinelistuser">
+                    Medicines
+                  </NavLink>
+                </NavItem>
+                <NavItem>
+                  <NavLink tag={ReactLink} to="/cartlist">
+                    Your Cart
+                  </NavLink>
+                </NavItem>
+                <NavItem>
+                  <NavLink tag={ReactLink} to="/orderlist">
+                    Your order
+                  </NavLink>
+                </NavItem>
+              </>
+            )}
+          </Nav>
           <Nav navbar>
             {login && (
               <>

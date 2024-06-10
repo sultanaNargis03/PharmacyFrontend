@@ -1,5 +1,7 @@
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 export const getAuthToken = () => {
   return window.localStorage.getItem("auth_token");
@@ -11,7 +13,7 @@ export const getUsername = () => {
   if (token) {
     // const decoded = jwtDecode(token, { header: true });
     const decoded = jwtDecode(token);
-    console.log(decoded);
+    // console.log(decoded);
     const username = decoded.sub;
     return username;
   }
