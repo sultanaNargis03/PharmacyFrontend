@@ -1,22 +1,9 @@
-import { getAuthToken } from "../../helper/axios_helper";
-
-export const getToken = () => {
-  let token = localStorage.getItem("data").accessToken;
-  return token;
-};
+import { useState } from "react";
 
 export const isLoggedIn = () => {
   let data = localStorage.getItem("isLogedIn");
   console.log("data boolean:" + data);
-  if (data != null) return true;
-  else return false;
-};
-
-//doLogin=>
-export const doLogin = (data, next) => {
-  localStorage.setItem("data", data);
-
-  next();
+  return data === "true";
 };
 
 //doLogout=>remove from localstorage
@@ -32,8 +19,7 @@ export const setCurrentUserRole = (role) => {
   localStorage.setItem("role", role);
 };
 
-//get CurrentUser
-
+//get CurrentUserRole
 export const getCurrentUserRole = () => {
   return localStorage.getItem("role");
 };

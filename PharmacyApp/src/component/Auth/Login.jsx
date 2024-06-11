@@ -2,7 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { setAuthHeader } from "../../helper/axios_helper";
-import { doLogin, setCurrentUserRole } from "./Auth";
+import { setCurrentUserRole } from "./Auth";
 import { ToastContainer, toast } from "react-toastify";
 
 const Login = () => {
@@ -14,9 +14,10 @@ const Login = () => {
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
-    //console.log(loginDto);
+    console.log(loginDto);
     e.preventDefault();
     window.localStorage.setItem("isLogedIn", true);
+
     try {
       if (loginDto.username.trim() == "" || loginDto.password.trim() == "") {
         toast.error("Username or password is required");
@@ -26,13 +27,14 @@ const Login = () => {
         "http://localhost:8088/Pharmacy/api/auth/login",
         loginDto
       );
+
       toast.success("login sucess");
-      doLogin(response, () => {
-        setAuthHeader(response.data.accessToken);
-        setCurrentUserRole(response.data.role);
-        console.log("saved!");
-        navigate("/home");
-      });
+      localStorage.setItem("data", JSON.stringify(response.data));
+      setAuthHeader(response.data.accessToken);
+      setCurrentUserRole(response.data.role);
+      console.log("saved!");
+      navigate("/home");
+      window.location.reload();
     } catch (error) {
       console.error("Failed to login:", error);
       toast.error("either username or password invalid!");

@@ -20,7 +20,7 @@ import EditMedicine from "./component/Medicine/EditMedicine";
 
 import Register from "./component/Auth/Register";
 import Login from "./component/Auth/Login";
-import Logout from "./component/Auth/Logout";
+
 import AddToCart from "./component/Cart/AddToCart";
 import CartList from "./component/Cart/CartList";
 
@@ -49,7 +49,6 @@ function App() {
         <Route path="/navbar" element={<CustomNavbar />} exact />
         <Route path="/register" element={<Register />} exact />
         <Route path="/login" element={<Login />} exact />
-        <Route path="/logout" element={<Logout />} exact />
 
         <Route
           path="/medicinelistadmin"

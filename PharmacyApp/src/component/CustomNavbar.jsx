@@ -13,7 +13,7 @@ import {
   NavLink,
   NavbarText,
 } from "reactstrap";
-import { getUsername } from "../helper/axios_helper";
+import { getAuthToken, getUsername } from "../helper/axios_helper";
 
 const CustomNavbar = () => {
   const [isOpen, setIsOpen] = useState(false);
