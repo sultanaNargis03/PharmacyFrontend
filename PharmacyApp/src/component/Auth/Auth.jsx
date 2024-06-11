@@ -8,10 +8,6 @@ export const isLoggedIn = () => {
 
 //doLogout=>remove from localstorage
 export const doLogout = (next) => {
-  localStorage.removeItem("auth_token");
-  localStorage.removeItem("isLogedIn");
-  localStorage.removeItem("data");
-  localStorage.removeItem("role");
   next();
 };
 

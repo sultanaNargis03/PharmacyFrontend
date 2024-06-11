@@ -16,7 +16,10 @@ export const AuthProvider = ({ children }) => {
 
   const logout = (callback) => {
     setIsAuthenticated(false);
-
+    localStorage.removeItem("auth_token");
+    localStorage.removeItem("isLogedIn");
+    localStorage.removeItem("data");
+    localStorage.removeItem("role");
     if (callback) callback();
   };
 
