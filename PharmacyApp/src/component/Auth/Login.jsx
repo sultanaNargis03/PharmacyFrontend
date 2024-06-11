@@ -1,16 +1,18 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { setAuthHeader } from "../../helper/axios_helper";
-import { setCurrentUserRole } from "./Auth";
+
 import { ToastContainer, toast } from "react-toastify";
+import { setCurrentUserRole } from "./Auth";
+import { AuthContext } from "./AuthContext";
 
 const Login = () => {
   const [loginDto, setLoginDto] = useState({
     username: "",
     password: "",
   });
-
+  const { login } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -32,9 +34,10 @@ const Login = () => {
       localStorage.setItem("data", JSON.stringify(response.data));
       setAuthHeader(response.data.accessToken);
       setCurrentUserRole(response.data.role);
+      login();
       console.log("saved!");
       navigate("/home");
-      window.location.reload();
+      // window.location.reload();
     } catch (error) {
       console.error("Failed to login:", error);
       toast.error("either username or password invalid!");

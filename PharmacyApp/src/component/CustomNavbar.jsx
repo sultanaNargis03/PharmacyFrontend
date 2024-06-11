@@ -1,8 +1,6 @@
+// src/component/CustomNavbar.jsx
 import { NavLink as ReactLink, useNavigate } from "react-router-dom";
-import { BsCart } from "react-icons/bs";
-import { useEffect, useState } from "react";
-import { doLogout, getCurrentUserRole, isLoggedIn } from "./Auth/Auth";
-import { FaBars, FaSearch } from "react-icons/fa";
+import { useContext, useState } from "react";
 import {
   Collapse,
   Navbar,
@@ -13,46 +11,39 @@ import {
   NavLink,
   NavbarText,
 } from "reactstrap";
-import { getAuthToken, getUsername } from "../helper/axios_helper";
+import { getUsername } from "../helper/axios_helper";
+import { AuthContext } from "./Auth/AuthContext"; // Adjust the path if necessary
+import { getCurrentUserRole } from "./Auth/Auth";
 
 const CustomNavbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [login, setLogin] = useState(false);
-  const [role, setRole] = useState(undefined);
+  const { isAuthenticated, logout } = useContext(AuthContext);
 
+  const role = getCurrentUserRole();
   const username = getUsername();
   const navigate = useNavigate();
 
-  const Logout = () => {
-    doLogout(() => {
-      setLogin(false);
-      navigate("/");
-    });
+  const handleLogout = () => {
+    logout(() => navigate("/"));
   };
-  useEffect(() => {
-    setLogin(isLoggedIn());
-    setRole(getCurrentUserRole());
-  }, [login]);
 
   return (
     <div>
-      <Navbar className="my-2" color="dark" dark expand="md" fixed="">
+      <Navbar className="my-2" color="dark" dark expand="md">
         <NavbarBrand tag={ReactLink} to="/">
           Pharma
         </NavbarBrand>
-        <NavbarToggler onClick={() => setIsOpen(!isOpen)}></NavbarToggler>
+        <NavbarToggler onClick={() => setIsOpen(!isOpen)} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="me-auto" navbar>
-            {login && (
-              <>
-                <NavItem>
-                  <NavLink tag={ReactLink} to="/home">
-                    Home
-                  </NavLink>
-                </NavItem>
-              </>
+            {isAuthenticated && (
+              <NavItem>
+                <NavLink tag={ReactLink} to="/home">
+                  Home
+                </NavLink>
+              </NavItem>
             )}
-            {login && role.includes("ADMIN") && (
+            {isAuthenticated && role.includes("ADMIN") && (
               <>
                 <NavItem>
                   <NavLink tag={ReactLink} to="/medicinelistadmin">
@@ -66,7 +57,7 @@ const CustomNavbar = () => {
                 </NavItem>
               </>
             )}
-            {login && role.includes("USER") && (
+            {isAuthenticated && role.includes("USER") && (
               <>
                 <NavItem>
                   <NavLink tag={ReactLink} to="/medicinelistuser">
@@ -80,24 +71,23 @@ const CustomNavbar = () => {
                 </NavItem>
                 <NavItem>
                   <NavLink tag={ReactLink} to="/orderlist">
-                    Your order
+                    Your Orders
                   </NavLink>
                 </NavItem>
               </>
             )}
           </Nav>
           <Nav navbar>
-            {login && (
+            {isAuthenticated ? (
               <>
                 <NavItem>
-                  <NavLink onClick={Logout}>Logout</NavLink>
+                  <NavLink onClick={handleLogout}>Logout</NavLink>
                 </NavItem>
                 <NavItem>
                   <NavLink>{username}</NavLink>
                 </NavItem>
               </>
-            )}
-            {!login && (
+            ) : (
               <>
                 <NavItem>
                   <NavLink tag={ReactLink} to="/login">
@@ -118,4 +108,5 @@ const CustomNavbar = () => {
     </div>
   );
 };
+
 export default CustomNavbar;
