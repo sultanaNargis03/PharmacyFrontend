@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { getAuthToken } from "../../helper/axios_helper";
 import CustomNavbar from "../CustomNavbar";
+import { ToastContainer, toast } from "react-toastify";
 
 const Checkout = () => {
   const [checkouts, setCheckouts] = useState([]);
@@ -22,7 +23,7 @@ const Checkout = () => {
           },
         }
       );
-
+      toast.success("Your order has been placed successfuly");
       setCheckouts(response.data);
     } catch (error) {
       console.error("Failed to fetch carts:", error);

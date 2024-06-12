@@ -6,6 +6,19 @@ import { setAuthHeader } from "../../helper/axios_helper";
 import { ToastContainer, toast } from "react-toastify";
 import { setCurrentUserRole } from "./Auth";
 import { AuthContext } from "./AuthContext";
+import {
+  Form,
+  FormGroup,
+  Label,
+  Input,
+  Col,
+  Container,
+  Card,
+  CardHeader,
+  CardBody,
+  Button,
+  Row,
+} from "reactstrap";
 
 const Login = () => {
   const [loginDto, setLoginDto] = useState({
@@ -37,7 +50,6 @@ const Login = () => {
       login();
       console.log("saved!");
       navigate("/home");
-      // window.location.reload();
     } catch (error) {
       console.error("Failed to login:", error);
       toast.error("either username or password invalid!");
@@ -48,40 +60,68 @@ const Login = () => {
     setLoginDto({ ...loginDto, [e.target.name]: e.target.value });
   };
   return (
-    <div>
-      <h2>Login!!</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>USER NAME:</label>
-          <input
-            type="text"
-            name="username"
-            value={loginDto.username}
-            onChange={handleChange}
-          />
-        </div>
+    <Container>
+      <Row className="mt-4 mb-4">
+        <Col sm={{ size: 6, offset: 3 }}>
+          <Card color="dark" inverse>
+            <CardHeader>
+              <h3>Login!!</h3>
+            </CardHeader>
+            <CardBody>
+              <Form>
+                <FormGroup>
+                  <Label for="username">USER NAME</Label>
 
-        <div>
-          <label>PASSWORD:</label>
-          <input
-            type="password"
-            name="password"
-            value={loginDto.password}
-            onChange={handleChange}
-          />
-        </div>
+                  <Input
+                    type="text"
+                    name="username"
+                    value={loginDto.username}
+                    placeholder="Enter Here..."
+                    onChange={handleChange}
+                  />
+                </FormGroup>
+                <FormGroup>
+                  <Label for="password">PASSWORD</Label>
 
-        <div>
-          <button type="submit">Sign In</button>
-        </div>
-        <div>
-          <span>Don't have an account yet?</span>
-          <Link className="btn btn-link" to={"/register"}>
-            Sign Up
-          </Link>
-        </div>
-      </form>
-    </div>
+                  <Input
+                    type="text"
+                    name="password"
+                    value={loginDto.password}
+                    placeholder="Enter Here..."
+                    onChange={handleChange}
+                  />
+                </FormGroup>
+                <Container className="text-center">
+                  <Button
+                    color="light"
+                    outline
+                    type="submit"
+                    onClick={handleSubmit}
+                  >
+                    Sign In
+                  </Button>
+                  <Button
+                    type="reset"
+                    color="light"
+                    //onClick={handleReset}
+                    outline
+                    className="ms-2"
+                  >
+                    Reset
+                  </Button>
+                </Container>
+                <Container className="text-center ">
+                  <span>Don't have an account yet?</span>
+                  <Link className="btn btn-link" to={"/register"}>
+                    Sign Up
+                  </Link>
+                </Container>
+              </Form>
+            </CardBody>
+          </Card>
+        </Col>
+      </Row>
+    </Container>
   );
 };
 export default Login;

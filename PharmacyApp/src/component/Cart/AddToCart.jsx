@@ -3,6 +3,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { getAuthToken } from "../../helper/axios_helper";
 import { Link } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
 
 const AddToCart = () => {
   const [medicine, setMedicine] = useState({
@@ -53,7 +54,7 @@ const AddToCart = () => {
           },
         }
       );
-
+      toast.success(medicineName + " Added to cart successfuly");
       console.log(response.data);
     } catch (error) {
       console.error("Failed to add to cart:", error);
