@@ -5,3 +5,48 @@
   justify-content: center;
   background-color: gray;
 }
+
+body,
+.card {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+html,
+footer {
+  width: 100%;
+  padding: 10px 0;
+  background-color: rgba(0, 0, 0, 0.8); /* Example: semi-transparent black */
+  color: #fff; /* Text color for the footer */
+  text-align: center;
+  position: relative; /* Ensure footer is positioned relative to its container */
+  bottom: 0; /* Stick footer to the bottom */
+}
+
+/* Additional styles to ensure footer behavior */
+/* html {
+  position: relative;
+  min-height: 100%;
+} */
+body {
+  background-image: url("https://st5.depositphotos.com/30551032/64440/i/450/depositphotos_644402218-stock-photo-tablets-pharmacology-medicine-pharmacy-health.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  height: 100%;
+
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  min-height: 100vh;
+  animation: zoomOut 20s infinite; /* Apply the zoom-out animation */
+}
+
+@keyframes zoomOut {
+  0% {
+    background-size: 110%; /* Start slightly zoomed in */
+  }
+  100% {
+    background-size: 100%; /* End at the normal size */
+  }
+}

@@ -65,7 +65,7 @@ const AddMedicine = () => {
       <Row className="mt-3 mb-3">
         <Col sm={{ size: 6, offset: 3 }}>
           <Card color="dark" inverse>
-            <CardHeader>
+            <CardHeader className=" fw-bolder">
               <h3>Add Medicine</h3>
             </CardHeader>
             <CardBody>

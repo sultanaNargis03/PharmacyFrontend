@@ -29,7 +29,7 @@ const CustomNavbar = () => {
 
   return (
     <div>
-      <Navbar className="my-2" color="dark" dark expand="md">
+      <Navbar className="navbar-custom" color="dark" dark expand="md">
         <NavbarBrand tag={ReactLink} to="/">
           Pharma
         </NavbarBrand>

@@ -71,67 +71,70 @@ const MedicineListAdmin = () => {
   return (
     <Container>
       <Row className="mt-3 mb-3">
-        <Col sm={{ size: 6, offset: 3 }}>
+        <Col>
           <Card color="dark" inverse>
-            <CardHeader>Medicine list</CardHeader>
+            <CardHeader className=" fw-bolder">
+              <h3>Medicine list</h3>
+            </CardHeader>
             <CardBody>
-              <Link className="btn btn-link" to={"/addmedicine"}>
+              <Link className="btn btn-link mb-2" to={"/addmedicine"}>
                 Add Medicine
               </Link>
-              <Container>
-                <Form>
-                  <FormGroup>
-                    <Input
-                      className="Search"
-                      type="text"
-                      onChange={handleFilter}
-                      placeholder="Search Medicines"
-                    />
-                  </FormGroup>
-                </Form>
-              </Container>
+
+              <Form>
+                <FormGroup>
+                  <Input
+                    className="Search"
+                    type="text"
+                    onChange={handleFilter}
+                    placeholder="Search Medicines"
+                  />
+                </FormGroup>
+              </Form>
 
               <ListGroup flush>
-                {filterData.map((medicine) => (
-                  <div key={medicine.id}>
-                    <Container className="mb-3">
-                      <ListGroupItem>Id : {medicine.id}</ListGroupItem>
-                      <ListGroupItem>
-                        Medicine Name : {medicine.medicineName}
-                      </ListGroupItem>
-                      <ListGroupItem>
-                        Medicine Composition : {medicine.medicineComposition}
-                      </ListGroupItem>
-                      <ListGroupItem>
-                        Medicine Quantity : {medicine.medicineQuantity}
-                      </ListGroupItem>
-                      <ListGroupItem>
-                        Medicine Price : {medicine.medicinePrice}
-                      </ListGroupItem>
-                      <ListGroupItem>
-                        Expiry Date : {medicine.expiryDate}
-                      </ListGroupItem>
-
-                      {/* <Container className="text-center"> */}
-                      <ListGroupItem>
-                        <Button
-                          color="danger"
-                          type="submit"
-                          onClick={() => deleteMedicine(medicine.id)}
-                        >
-                          Delete
-                        </Button>
-                        <Link
-                          className="btn btn-link"
-                          to={`/edit/${medicine.id}`}
-                        >
-                          Edit
-                        </Link>
-                      </ListGroupItem>
-                      {/* </Container> */}
-                    </Container>
-                  </div>
-                ))}
+                <Row>
+                  {filterData.map((medicine) => (
+                    <Col md={4} key={medicine.id}>
+                      <Card className="mb-4">
+                        <CardBody>
+                          <ListGroupItem>Id : {medicine.id}</ListGroupItem>
+                          <ListGroupItem>
+                            Medicine Name : {medicine.medicineName}
+                          </ListGroupItem>
+                          <ListGroupItem>
+                            Medicine Composition :{" "}
+                            {medicine.medicineComposition}
+                          </ListGroupItem>
+                          <ListGroupItem>
+                            Medicine Quantity : {medicine.medicineQuantity}
+                          </ListGroupItem>
+                          <ListGroupItem>
+                            Medicine Price : {medicine.medicinePrice}
+                          </ListGroupItem>
+                          <ListGroupItem>
+                            Expiry Date : {medicine.expiryDate}
+                          </ListGroupItem>
+                          <ListGroupItem className="d-flex justify-content-between">
+                            <Button
+                              color="danger"
+                              type="submit"
+                              onClick={() => deleteMedicine(medicine.id)}
+                            >
+                              Delete
+                            </Button>
+                            <Link
+                              className="btn btn-link"
+                              to={`/edit/${medicine.id}`}
+                            >
+                              Edit
+                            </Link>
+                          </ListGroupItem>
+                        </CardBody>
+                      </Card>
+                    </Col>
+                  ))}
+                </Row>
               </ListGroup>
             </CardBody>
           </Card>
