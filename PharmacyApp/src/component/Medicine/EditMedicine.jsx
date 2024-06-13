@@ -3,6 +3,21 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { getAuthToken } from "../../helper/axios_helper";
+import {
+  Form,
+  FormGroup,
+  Label,
+  Input,
+  Col,
+  Container,
+  Card,
+  CardHeader,
+  CardBody,
+  Button,
+  Row,
+} from "reactstrap";
+
+import { ToastContainer, toast } from "react-toastify";
 
 const EditMedicine = () => {
   const [medicine, setMedicine] = useState({
@@ -64,82 +79,103 @@ const EditMedicine = () => {
         }
       );
       console.log(medicine);
+      toast.success("Medicine updated successfully");
       navigate("/MedicineListAdmin");
     } catch (error) {
+      toast.erorr("something ent wrong!!");
       console.error("Failed to update medicine:", error);
     }
   };
   return (
-    <div>
-      <h2>Update Medicine</h2>
-      <div>
-        <form onSubmit={handleSubmit}>
-          {/* <div>
-            <label>Id:</label>
-            <input
-              type="text"
-              name="id"
-              value={medicine.id}
-              //placeholder="ID"
-              onChange={handleChange}
-            />
-          </div> */}
-          <div>
-            <label>Medicine Name:</label>
-            <input
-              type="text"
-              name="medicineName"
-              value={medicine.medicineName}
-              onChange={handleChange}
-            />
-          </div>
-          <div>
-            <label>Medicine Composition:</label>
-            <input
-              type="text"
-              name="medicineComposition"
-              value={medicine.medicineComposition}
-              onChange={handleChange}
-            />
-          </div>
-          <div>
-            <label>Medicine Price:</label>
-            <input
-              type="text"
-              name="medicinePrice"
-              value={medicine.medicinePrice}
-              onChange={handleChange}
-            />
-          </div>
-          <div>
-            <label>Medicine Quantity:</label>
-            <input
-              type="number"
-              name="medicineQuantity"
-              value={medicine.medicineQuantity}
-              onChange={handleChange}
-            />
-          </div>
-          <div>
-            <label>Expiry Date:</label>
-            <input
-              type="date"
-              name="expiryDate"
-              value={medicine.expiryDate}
-              onChange={handleChange}
-            />
-          </div>
-          <div>
-            <button className="btn btn-sm btn-dark" type="submit">
-              Update
-            </button>
-          </div>
-          {/* <div>
-          <button type="reset">Clear</button>
-        </div> */}
-        </form>
-      </div>
-    </div>
+    <Container>
+      <Row className="mt-3 mb-3">
+        <Col sm={{ size: 6, offset: 3 }}>
+          <Card color="dark" inverse>
+            <CardHeader>
+              <h3>Update Medicine</h3>
+            </CardHeader>
+            <CardBody>
+              <Form>
+                <FormGroup>
+                  <Label for="medicineName">Medicine Name</Label>
+
+                  <Input
+                    type="text"
+                    name="medicineName"
+                    value={medicine.medicineName}
+                    onChange={handleChange}
+                    placeholder="Enter Here..."
+                  />
+                </FormGroup>
+                <FormGroup>
+                  <Label for="medicineComposition">Medicine Composition</Label>
+
+                  <Input
+                    type="text"
+                    name="medicineComposition"
+                    value={medicine.medicineComposition}
+                    placeholder="Enter Here..."
+                    onChange={handleChange}
+                  />
+                </FormGroup>
+                <FormGroup>
+                  <Label for="medicinePrice">Medicine Price</Label>
+
+                  <Input
+                    type="text"
+                    name="medicinePrice"
+                    value={medicine.medicinePrice}
+                    placeholder="Enter Here..."
+                    onChange={handleChange}
+                  />
+                </FormGroup>
+                <FormGroup>
+                  <Label for="medicineQuantity">Medicine Quantity</Label>
+
+                  <Input
+                    type="number"
+                    name="medicineQuantity"
+                    value={medicine.medicineQuantity}
+                    placeholder="Enter Here..."
+                    onChange={handleChange}
+                  />
+                </FormGroup>
+                <FormGroup>
+                  <Label for="expiryDate">Expiry Date</Label>
+
+                  <Input
+                    type="date"
+                    name="expiryDate"
+                    value={medicine.expiryDate}
+                    placeholder="Enter Here..."
+                    onChange={handleChange}
+                  />
+                </FormGroup>
+                <Container className="text-center">
+                  <Button
+                    color="success"
+                    outline
+                    type="submit"
+                    onClick={handleSubmit}
+                  >
+                    Update
+                  </Button>
+                  <Button
+                    type="reset"
+                    color="danger"
+                    //onClick={handleReset}
+                    outline
+                    className="ms-2"
+                  >
+                    Reset
+                  </Button>
+                </Container>
+              </Form>
+            </CardBody>
+          </Card>
+        </Col>
+      </Row>
+    </Container>
   );
 };
 export default EditMedicine;

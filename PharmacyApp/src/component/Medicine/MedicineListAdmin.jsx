@@ -3,6 +3,23 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { getAuthToken } from "../../helper/axios_helper";
 import CustomNavbar from "../CustomNavbar";
+import {
+  Form,
+  FormGroup,
+  FormText,
+  Label,
+  Input,
+  Col,
+  Container,
+  Card,
+  CardHeader,
+  CardBody,
+  Button,
+  Row,
+  FormFeedback,
+  ListGroupItem,
+  ListGroup,
+} from "reactstrap";
 
 const MedicineListAdmin = () => {
   const [medicines, setMedicines] = useState([]);
@@ -52,47 +69,75 @@ const MedicineListAdmin = () => {
   };
 
   return (
-    <div>
-      <div className="container mt-5">
-        <div className="card h-100">
-          <h2 className="card-title">Medicine list</h2>
+    <Container>
+      <Row className="mt-3 mb-3">
+        <Col sm={{ size: 6, offset: 3 }}>
+          <Card color="dark" inverse>
+            <CardHeader>Medicine list</CardHeader>
+            <CardBody>
+              <Link className="btn btn-link" to={"/addmedicine"}>
+                Add Medicine
+              </Link>
+              <Container>
+                <Form>
+                  <FormGroup>
+                    <Input
+                      className="Search"
+                      type="text"
+                      onChange={handleFilter}
+                      placeholder="Search Medicines"
+                    />
+                  </FormGroup>
+                </Form>
+              </Container>
 
-          <Link className="btn btn-link" to={"/addmedicine"}>
-            Add Medicine
-          </Link>
+              <ListGroup flush>
+                {filterData.map((medicine) => (
+                  <div key={medicine.id}>
+                    <Container className="mb-3">
+                      <ListGroupItem>Id : {medicine.id}</ListGroupItem>
+                      <ListGroupItem>
+                        Medicine Name : {medicine.medicineName}
+                      </ListGroupItem>
+                      <ListGroupItem>
+                        Medicine Composition : {medicine.medicineComposition}
+                      </ListGroupItem>
+                      <ListGroupItem>
+                        Medicine Quantity : {medicine.medicineQuantity}
+                      </ListGroupItem>
+                      <ListGroupItem>
+                        Medicine Price : {medicine.medicinePrice}
+                      </ListGroupItem>
+                      <ListGroupItem>
+                        Expiry Date : {medicine.expiryDate}
+                      </ListGroupItem>
 
-          <div className="card-body">
-            <div className="Search">
-              <input
-                type="text"
-                onChange={handleFilter}
-                placeholder="Search Medicines"
-              />
-            </div>
-            {filterData.map((medicine) => (
-              <div key={medicine.id}>
-                <div>Id : {medicine.id}</div>
-                <div>Medicine Name : {medicine.medicineName}</div>
-                <div>Medicine Composition : {medicine.medicineComposition}</div>
-                <div>Medicine Quantity : {medicine.medicineQuantity}</div>
-                <div>Medicine Price : {medicine.medicinePrice}</div>
-                <div>Expiry Date : {medicine.expiryDate}</div>
-
-                <button
-                  className="btn btn-sm btn-danger"
-                  onClick={() => deleteMedicine(medicine.id)}
-                >
-                  Delete
-                </button>
-                <Link className="btn btn-link" to={`/edit/${medicine.id}`}>
-                  Edit
-                </Link>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </div>
+                      {/* <Container className="text-center"> */}
+                      <ListGroupItem>
+                        <Button
+                          color="danger"
+                          type="submit"
+                          onClick={() => deleteMedicine(medicine.id)}
+                        >
+                          Delete
+                        </Button>
+                        <Link
+                          className="btn btn-link"
+                          to={`/edit/${medicine.id}`}
+                        >
+                          Edit
+                        </Link>
+                      </ListGroupItem>
+                      {/* </Container> */}
+                    </Container>
+                  </div>
+                ))}
+              </ListGroup>
+            </CardBody>
+          </Card>
+        </Col>
+      </Row>
+    </Container>
   );
 };
 export default MedicineListAdmin;

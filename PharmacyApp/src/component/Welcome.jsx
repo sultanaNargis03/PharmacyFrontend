@@ -1,14 +1,10 @@
 import { Link } from "react-router-dom";
+import { Container } from "reactstrap";
 const Welcome = () => {
   return (
-    <div>
+    <Container className="text-center">
       <h1>Welcome to Pharmacy Management App!!</h1>
-      <Link to="/register">Register</Link>
-      <div>
-        <span>Already registered with us? </span>
-        <Link to="/login">login here</Link>
-      </div>
-    </div>
+    </Container>
   );
 };
 export default Welcome;

@@ -112,12 +112,6 @@ const Register = () => {
                     </FormText>
                   )}
                   {!usernameTaken && registerDto.username != "" && (
-                    // <div>
-                    //   <Input invalid />
-                    //   <FormFeedback tooltip>
-                    //     Oh noes! that name is already taken
-                    //   </FormFeedback>
-                    // </div>
                     <FormText color="success">
                       Sweet! that name is availble
                     </FormText>
