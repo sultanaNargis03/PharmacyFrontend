@@ -5,7 +5,6 @@ import { getAuthToken } from "../../helper/axios_helper";
 import {
   Form,
   FormGroup,
-  FormText,
   Label,
   Input,
   Col,
@@ -15,7 +14,6 @@ import {
   CardBody,
   Button,
   Row,
-  FormFeedback,
 } from "reactstrap";
 
 import { ToastContainer, toast } from "react-toastify";
@@ -43,7 +41,6 @@ const AddMedicine = () => {
     try {
       await axios.post(
         "http://localhost:8088/Pharmacy/api/medicine",
-        // medicine
         JSON.stringify(medicine),
         {
           headers: {
@@ -55,93 +52,99 @@ const AddMedicine = () => {
       toast.success("Medicine added successfully");
       navigate("/MedicineListAdmin");
     } catch (error) {
-      toast.erorr("something ent wrong!!");
+      toast.error("Something went wrong!!");
       console.error("Failed to add medicine:", error);
     }
   };
 
   return (
-    <Container>
-      <Row className="mt-3 mb-3">
+    <Container className="mt-3 mb-3">
+      <Row>
         <Col sm={{ size: 6, offset: 3 }}>
-          <Card color="dark" inverse>
-            <CardHeader className=" fw-bolder">
+          <Card color="dark" inverse className="bg-transparent border-0 p-4 ">
+            <CardHeader className="bg-transparent border-1">
               <h3>Add Medicine</h3>
             </CardHeader>
             <CardBody>
-              <Form>
+              <Form onSubmit={handleSubmit}>
                 <FormGroup>
                   <Label for="medicineName">Medicine Name</Label>
-
                   <Input
                     type="text"
                     name="medicineName"
                     value={medicine.medicineName}
                     onChange={handleChange}
                     placeholder="Enter Here..."
+                    style={{
+                      backgroundColor: "rgba(255, 255, 255, 0.3)",
+                      border: "1px solid rgba(255, 255, 255, 0.5)",
+                      color: "#000",
+                    }}
                   />
                 </FormGroup>
                 <FormGroup>
                   <Label for="medicineComposition">Medicine Composition</Label>
-
                   <Input
                     type="text"
                     name="medicineComposition"
                     value={medicine.medicineComposition}
-                    placeholder="Enter Here..."
                     onChange={handleChange}
+                    placeholder="Enter Here..."
+                    style={{
+                      backgroundColor: "rgba(255, 255, 255, 0.3)",
+                      border: "1px solid rgba(255, 255, 255, 0.5)",
+                      color: "#000",
+                    }}
                   />
                 </FormGroup>
                 <FormGroup>
                   <Label for="medicinePrice">Medicine Price</Label>
-
                   <Input
                     type="text"
                     name="medicinePrice"
                     value={medicine.medicinePrice}
-                    placeholder="Enter Here..."
                     onChange={handleChange}
+                    placeholder="Enter Here..."
+                    style={{
+                      backgroundColor: "rgba(255, 255, 255, 0.3)",
+                      border: "1px solid rgba(255, 255, 255, 0.5)",
+                      color: "#000",
+                    }}
                   />
                 </FormGroup>
                 <FormGroup>
                   <Label for="medicineQuantity">Medicine Quantity</Label>
-
                   <Input
                     type="number"
                     name="medicineQuantity"
                     value={medicine.medicineQuantity}
-                    placeholder="Enter Here..."
                     onChange={handleChange}
+                    placeholder="Enter Here..."
+                    style={{
+                      backgroundColor: "rgba(255, 255, 255, 0.3)",
+                      border: "1px solid rgba(255, 255, 255, 0.5)",
+                      color: "#000",
+                    }}
                   />
                 </FormGroup>
                 <FormGroup>
                   <Label for="expiryDate">Expiry Date</Label>
-
                   <Input
                     type="date"
                     name="expiryDate"
                     value={medicine.expiryDate}
-                    placeholder="Enter Here..."
                     onChange={handleChange}
+                    placeholder="Enter Here..."
+                    style={{
+                      backgroundColor: "rgba(255, 255, 255, 0.3)",
+                      border: "1px solid rgba(255, 255, 255, 0.5)",
+                      color: "#000",
+                    }}
                   />
                 </FormGroup>
                 <Container className="text-center">
-                  <Button
-                    color="success"
-                    outline
-                    type="submit"
-                    onClick={handleSubmit}
-                  >
+                  <Button color="success" type="submit">
                     Add Medicine
-                  </Button>
-                  <Button
-                    type="reset"
-                    color="danger"
-                    //onClick={handleReset}
-                    outline
-                    className="ms-2"
-                  >
-                    Reset Content
                   </Button>
                 </Container>
               </Form>
@@ -149,7 +152,9 @@ const AddMedicine = () => {
           </Card>
         </Col>
       </Row>
+      <ToastContainer />
     </Container>
   );
 };
+
 export default AddMedicine;

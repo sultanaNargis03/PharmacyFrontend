@@ -1,11 +1,12 @@
+import { Container } from "reactstrap";
 import { getUsername } from "../helper/axios_helper";
-
+import "./Welcome.css";
 const Home = () => {
   const username = getUsername();
   return (
-    <div>
-      <h3>Hello {username}! Welcome To PMA</h3>
-    </div>
+    <Container className="welcome-container" color="dark">
+      <h3 className="welcome-heading">Hello {username}! Good to see you</h3>
+    </Container>
   );
 };
 export default Home;

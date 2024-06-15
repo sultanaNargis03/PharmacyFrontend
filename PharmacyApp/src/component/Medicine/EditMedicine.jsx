@@ -18,6 +18,7 @@ import {
 } from "reactstrap";
 
 import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css"; // Ensure you import the CSS for toast notifications
 
 const EditMedicine = () => {
   const [medicine, setMedicine] = useState({
@@ -44,7 +45,6 @@ const EditMedicine = () => {
     try {
       const response = await axios.get(
         `http://localhost:8088/Pharmacy/api/medicine/${id}`,
-
         {
           headers: {
             "Content-Type": "application/json",
@@ -64,8 +64,8 @@ const EditMedicine = () => {
       console.error("Failed to fetch medicines:", error);
     }
   };
+
   const handleSubmit = async (e) => {
-    console.log(medicine);
     e.preventDefault();
     try {
       await axios.put(
@@ -78,28 +78,32 @@ const EditMedicine = () => {
           },
         }
       );
-      console.log(medicine);
       toast.success("Medicine updated successfully");
       navigate("/MedicineListAdmin");
     } catch (error) {
-      toast.erorr("something ent wrong!!");
+      toast.error("Failed to update medicine");
       console.error("Failed to update medicine:", error);
     }
   };
+
   return (
     <Container>
       <Row className="mt-3 mb-3">
         <Col sm={{ size: 6, offset: 3 }}>
-          <Card color="dark" inverse>
-            <CardHeader>
+          <Card color="dark" inverse className="bg-transparent border-0 p-4">
+            <CardHeader className="bg-transparent border-1">
               <h3>Update Medicine</h3>
             </CardHeader>
             <CardBody>
               <Form>
                 <FormGroup>
                   <Label for="medicineName">Medicine Name</Label>
-
                   <Input
+                    style={{
+                      backgroundColor: "rgba(255, 255, 255, 0.3)",
+                      border: "1px solid rgba(255, 255, 255, 0.5)",
+                      color: "#000",
+                    }}
                     type="text"
                     name="medicineName"
                     value={medicine.medicineName}
@@ -109,8 +113,12 @@ const EditMedicine = () => {
                 </FormGroup>
                 <FormGroup>
                   <Label for="medicineComposition">Medicine Composition</Label>
-
                   <Input
+                    style={{
+                      backgroundColor: "rgba(255, 255, 255, 0.3)",
+                      border: "1px solid rgba(255, 255, 255, 0.5)",
+                      color: "#000",
+                    }}
                     type="text"
                     name="medicineComposition"
                     value={medicine.medicineComposition}
@@ -120,8 +128,12 @@ const EditMedicine = () => {
                 </FormGroup>
                 <FormGroup>
                   <Label for="medicinePrice">Medicine Price</Label>
-
                   <Input
+                    style={{
+                      backgroundColor: "rgba(255, 255, 255, 0.3)",
+                      border: "1px solid rgba(255, 255, 255, 0.5)",
+                      color: "#000",
+                    }}
                     type="text"
                     name="medicinePrice"
                     value={medicine.medicinePrice}
@@ -131,8 +143,12 @@ const EditMedicine = () => {
                 </FormGroup>
                 <FormGroup>
                   <Label for="medicineQuantity">Medicine Quantity</Label>
-
                   <Input
+                    style={{
+                      backgroundColor: "rgba(255, 255, 255, 0.3)",
+                      border: "1px solid rgba(255, 255, 255, 0.5)",
+                      color: "#000",
+                    }}
                     type="number"
                     name="medicineQuantity"
                     value={medicine.medicineQuantity}
@@ -142,8 +158,12 @@ const EditMedicine = () => {
                 </FormGroup>
                 <FormGroup>
                   <Label for="expiryDate">Expiry Date</Label>
-
                   <Input
+                    style={{
+                      backgroundColor: "rgba(255, 255, 255, 0.3)",
+                      border: "1px solid rgba(255, 255, 255, 0.5)",
+                      color: "#000",
+                    }}
                     type="date"
                     name="expiryDate"
                     value={medicine.expiryDate}
@@ -152,22 +172,8 @@ const EditMedicine = () => {
                   />
                 </FormGroup>
                 <Container className="text-center">
-                  <Button
-                    color="success"
-                    outline
-                    type="submit"
-                    onClick={handleSubmit}
-                  >
+                  <Button color="success" type="submit" onClick={handleSubmit}>
                     Update
-                  </Button>
-                  <Button
-                    type="reset"
-                    color="danger"
-                    //onClick={handleReset}
-                    outline
-                    className="ms-2"
-                  >
-                    Reset
                   </Button>
                 </Container>
               </Form>
@@ -175,7 +181,9 @@ const EditMedicine = () => {
           </Card>
         </Col>
       </Row>
+      <ToastContainer />
     </Container>
   );
 };
+
 export default EditMedicine;

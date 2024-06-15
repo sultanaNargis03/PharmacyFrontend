@@ -83,7 +83,7 @@ const Register = () => {
   return (
     <Container>
       <Row className="mt-4 mb-4">
-        <Col sm={{ size: 6, offset: 3 }}>
+        <Col sm={{ size: 5, offset: 3 }}>
           <Card color="dark" inverse>
             <CardHeader>
               <h3>Fill Information to Register!!</h3>
@@ -91,7 +91,16 @@ const Register = () => {
             <CardBody>
               <Form>
                 <FormGroup>
-                  <Label for="username">USER NAME</Label>
+                  <Label
+                    for="username"
+                    style={{
+                      textAlign: "left",
+                      display: "block",
+                      fontSize: 15,
+                    }}
+                  >
+                    USER NAME
+                  </Label>
 
                   <Input
                     type="text"
@@ -124,7 +133,16 @@ const Register = () => {
                   )}
                 </FormGroup>
                 <FormGroup>
-                  <Label for="password">PASSWORD</Label>
+                  <Label
+                    for="password"
+                    style={{
+                      textAlign: "left",
+                      display: "block",
+                      fontSize: 15,
+                    }}
+                  >
+                    PASSWORD
+                  </Label>
 
                   <Input
                     type="text"
@@ -135,7 +153,16 @@ const Register = () => {
                   />
                 </FormGroup>
                 <FormGroup>
-                  <Label for="email">EMAIL</Label>
+                  <Label
+                    for="email"
+                    style={{
+                      textAlign: "left",
+                      display: "block",
+                      fontSize: 15,
+                    }}
+                  >
+                    EMAIL
+                  </Label>
 
                   <Input
                     type="email"
@@ -146,7 +173,16 @@ const Register = () => {
                   />
                 </FormGroup>
                 <FormGroup>
-                  <Label for="phnNo">PHONE NO</Label>
+                  <Label
+                    for="phnNo"
+                    style={{
+                      textAlign: "left",
+                      display: "block",
+                      fontSize: 15,
+                    }}
+                  >
+                    PHONE NO
+                  </Label>
 
                   <Input
                     type="text"
@@ -156,26 +192,21 @@ const Register = () => {
                     onChange={handleChange}
                   />
                 </FormGroup>
-                <Container className="text-center">
-                  <Button
-                    color="light"
-                    outline
-                    type="submit"
-                    onClick={handleSubmit}
-                  >
-                    Sign Up
-                  </Button>
-                  <Button
-                    type="reset"
-                    color="light"
-                    //onClick={handleReset}
-                    outline
-                    className="ms-2"
-                  >
-                    Reset
-                  </Button>
-                </Container>
-                <Container className="text-center ">
+
+                <Button
+                  className="mt-3"
+                  color="primary"
+                  type="submit"
+                  style={{ width: "100%" }}
+                  onClick={handleSubmit}
+                >
+                  Sign Up
+                </Button>
+
+                <Container
+                  className="mt-2"
+                  style={{ textAlign: "left", display: "block" }}
+                >
                   <span>Already have an account?</span>
                   <Link className="btn btn-link" to={"/login"}>
                     Sign In

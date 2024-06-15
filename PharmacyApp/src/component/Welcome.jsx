@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
 import { Container } from "reactstrap";
+import "./Welcome.css";
 const Welcome = () => {
   return (
-    <Container className="text-center">
-      <h1>Welcome to Pharmacy Management App!!</h1>
+    <Container className="welcome-container" color="dark">
+      <h1 className="welcome-heading">Welcome to Pharma Healthcare</h1>
     </Container>
   );
 };

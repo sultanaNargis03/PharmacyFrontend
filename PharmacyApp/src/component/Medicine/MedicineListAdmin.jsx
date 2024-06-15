@@ -25,6 +25,7 @@ const MedicineListAdmin = () => {
   const [medicines, setMedicines] = useState([]);
   const [filterData, setFilterData] = useState([]);
   const token = getAuthToken();
+
   useEffect(() => {
     fetchMedicines();
   }, []);
@@ -46,6 +47,7 @@ const MedicineListAdmin = () => {
       console.error("Failed to fetch medicines:", error);
     }
   };
+
   const handleFilter = (event) => {
     setFilterData(
       medicines.filter((f) =>
@@ -53,6 +55,7 @@ const MedicineListAdmin = () => {
       )
     );
   };
+
   const deleteMedicine = async (id) => {
     try {
       await axios.delete(`http://localhost:8088/Pharmacy/api/medicine/${id}`, {
@@ -72,12 +75,23 @@ const MedicineListAdmin = () => {
     <Container>
       <Row className="mt-3 mb-3">
         <Col>
-          <Card color="dark" inverse>
-            <CardHeader className=" fw-bolder">
-              <h3>Medicine list</h3>
+          <Card
+            className="p-4"
+            style={{
+              backgroundColor: "rgba(0, 0, 0, 0.3)",
+              border: "none",
+              borderRadius: "15px",
+              boxShadow: "0 10px 20px rgba(0, 0, 0, 0.2)",
+            }}
+          >
+            <CardHeader className="fw-bolder text-white">
+              <h3>Medicine List</h3>
             </CardHeader>
             <CardBody>
-              <Link className="btn btn-link mb-2" to={"/addmedicine"}>
+              <Link
+                className="btn btn-link mb-2 text-primary"
+                to={"/addmedicine"}
+              >
                 Add Medicine
               </Link>
 
@@ -88,6 +102,7 @@ const MedicineListAdmin = () => {
                     type="text"
                     onChange={handleFilter}
                     placeholder="Search Medicines"
+                    style={{ backgroundColor: "rgba(255, 255, 255, 0.3)" }}
                   />
                 </FormGroup>
               </Form>
@@ -143,4 +158,5 @@ const MedicineListAdmin = () => {
     </Container>
   );
 };
+
 export default MedicineListAdmin;
