@@ -89,8 +89,13 @@ const MedicineListAdmin = () => {
             </CardHeader>
             <CardBody>
               <Link
-                className="btn btn-link mb-2 text-primary"
+                className="btn btn-link mb-3 text-primary "
                 to={"/addmedicine"}
+                style={{
+                  color: "#007bff",
+                  backgroundColor: "black",
+                  textDecoration: "underline",
+                }}
               >
                 Add Medicine
               </Link>
@@ -135,12 +140,22 @@ const MedicineListAdmin = () => {
                               color="danger"
                               type="submit"
                               onClick={() => deleteMedicine(medicine.id)}
+                              style={{
+                                color: "white",
+                                backgroundColor: "red",
+                                textDecoration: "none",
+                              }}
                             >
                               Delete
                             </Button>
                             <Link
                               className="btn btn-link"
                               to={`/edit/${medicine.id}`}
+                              style={{
+                                color: "#007bff",
+                                backgroundColor: "black",
+                                textDecoration: "underline",
+                              }}
                             >
                               Edit
                             </Link>

@@ -172,7 +172,15 @@ const EditMedicine = () => {
                   />
                 </FormGroup>
                 <Container className="text-center">
-                  <Button color="success" type="submit" onClick={handleSubmit}>
+                  <Button
+                    style={{
+                      color: "black",
+                      backgroundColor: "green",
+                      textDecoration: "none",
+                    }}
+                    type="submit"
+                    onClick={handleSubmit}
+                  >
                     Update
                   </Button>
                 </Container>

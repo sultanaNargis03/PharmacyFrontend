@@ -56,6 +56,10 @@ const AddToCart = () => {
   const handleSubmit = async (e) => {
     // console.log(cart);
     e.preventDefault();
+    if (!medicine.medicineQuantity) {
+      toast.error("Please enter the medicine quantity");
+      return; // Exit early if quantity is not provided
+    }
     try {
       const response = await axios.post(
         `http://localhost:8088/Pharmacy/api-cart/cart/${medicineName}`,
@@ -78,7 +82,7 @@ const AddToCart = () => {
   return (
     <Container>
       <Row className="mt-3 mb-3">
-        <Col>
+        <Col sm={{ size: 6, offset: 3 }}>
           <Card
             className="p-4"
             style={{
@@ -108,13 +112,36 @@ const AddToCart = () => {
                 </FormGroup>
 
                 <Container className="text-center">
-                  <Button color="success" onClick={handleSubmit}>
+                  <Button
+                    style={{
+                      color: "green",
+                      backgroundColor: "black",
+                      textDecoration: "none",
+                    }}
+                    onClick={handleSubmit}
+                  >
                     Add to cart
                   </Button>
-                  <Link className="btn btn-link" to={"/cartlist"}>
+                  <Link
+                    style={{
+                      color: "#007bff",
+                      backgroundColor: "black",
+                      textDecoration: "underline",
+                    }}
+                    className="btn btn-link ms-2"
+                    to={"/cartlist"}
+                  >
                     Go to cart
                   </Link>
-                  <Link className="btn btn-link" to={"/medicinelistuser"}>
+                  <Link
+                    style={{
+                      color: "#007bff",
+                      backgroundColor: "black",
+                      textDecoration: "underline",
+                    }}
+                    className="btn btn-link ms-2"
+                    to={"/medicinelistuser"}
+                  >
                     Continue shopping
                   </Link>
                 </Container>

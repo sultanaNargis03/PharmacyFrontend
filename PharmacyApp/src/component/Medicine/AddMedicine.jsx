@@ -143,7 +143,14 @@ const AddMedicine = () => {
                   />
                 </FormGroup>
                 <Container className="text-center">
-                  <Button color="success" type="submit">
+                  <Button
+                    type="submit"
+                    style={{
+                      color: "black",
+                      backgroundColor: "green",
+                      textDecoration: "none",
+                    }}
+                  >
                     Add Medicine
                   </Button>
                 </Container>
