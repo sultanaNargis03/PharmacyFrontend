@@ -4,6 +4,19 @@ import { useState, useEffect } from "react";
 import { getAuthToken } from "../../helper/axios_helper";
 import { Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
+import {
+  Form,
+  FormGroup,
+  Label,
+  Input,
+  Col,
+  Container,
+  Card,
+  CardHeader,
+  CardBody,
+  Button,
+  Row,
+} from "reactstrap";
 
 const AddToCart = () => {
   const [medicine, setMedicine] = useState({
@@ -63,26 +76,55 @@ const AddToCart = () => {
   };
 
   return (
-    <div>
-      <h2>Add To Cart!!</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Medicine Quantity:</label>
-          <input
-            type="number"
-            name="medicineQuantity"
-            value={medicine.medicineQuantity}
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <button type="submit">Add to cart</button>
-          <Link className="btn btn-link" to={"/cartlist"}>
-            Go to cart
-          </Link>
-        </div>
-      </form>
-    </div>
+    <Container>
+      <Row className="mt-3 mb-3">
+        <Col>
+          <Card
+            className="p-4"
+            style={{
+              backgroundColor: "rgba(0, 0, 0, 0.3)",
+              border: "none",
+              borderRadius: "15px",
+              boxShadow: "0 10px 20px rgba(0, 0, 0, 0.2)",
+            }}
+          >
+            <CardHeader className="fw-bolder text-white text-center">
+              <h3>Add to Cart</h3>
+            </CardHeader>
+            <CardBody>
+              <Form>
+                <FormGroup>
+                  <Label for="medicineQuantity" className="text-white">
+                    Medicine Quantity
+                  </Label>
+                  <Input
+                    type="number"
+                    name="medicineQuantity"
+                    value={medicine.medicineQuantity}
+                    onChange={handleChange}
+                    placeholder="Enter here"
+                    style={{ backgroundColor: "rgba(255, 255, 255, 0.3)" }}
+                  />
+                </FormGroup>
+
+                <Container className="text-center">
+                  <Button color="success" onClick={handleSubmit}>
+                    Add to cart
+                  </Button>
+                  <Link className="btn btn-link" to={"/cartlist"}>
+                    Go to cart
+                  </Link>
+                  <Link className="btn btn-link" to={"/medicinelistuser"}>
+                    Continue shopping
+                  </Link>
+                </Container>
+              </Form>
+            </CardBody>
+          </Card>
+        </Col>
+      </Row>
+      <ToastContainer />
+    </Container>
   );
 };
 

@@ -2,8 +2,24 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { getAuthToken } from "../../helper/axios_helper";
-import "../Search.css";
 import CustomNavbar from "../CustomNavbar";
+import {
+  Form,
+  FormGroup,
+  FormText,
+  Label,
+  Input,
+  Col,
+  Container,
+  Card,
+  CardHeader,
+  CardBody,
+  Button,
+  Row,
+  FormFeedback,
+  ListGroupItem,
+  ListGroup,
+} from "reactstrap";
 
 const MedicineListUser = () => {
   const [filterData, setFilterData] = useState([]);
@@ -31,6 +47,7 @@ const MedicineListUser = () => {
       console.error("Failed to fetch medicines:", error);
     }
   };
+
   const handleFilter = (event) => {
     setFilterData(
       medicines.filter((f) =>
@@ -38,40 +55,83 @@ const MedicineListUser = () => {
       )
     );
   };
-  return (
-    <div>
-      <div className="container mt-5">
-        <div className="card h-100">
-          <h2 className="card-title">Medicine list</h2>
 
-          <div className="card-body">
-            <div className="Search">
-              <input
-                type="text"
-                onChange={handleFilter}
-                placeholder="Search Medicines"
-              />
-            </div>
-            {filterData.map((medicine) => (
-              <div key={medicine.id}>
-                <div>Id : {medicine.id}</div>
-                <div>Medicine Name : {medicine.medicineName}</div>
-                <div>Medicine Composition : {medicine.medicineComposition}</div>
-                <div>Medicine Quantity : {medicine.medicineQuantity}</div>
-                <div>Medicine Price : {medicine.medicinePrice}</div>
-                <div>Expiry Date : {medicine.expiryDate}</div>
-                <Link
-                  className="btn btn-link"
-                  to={`/addtocart/${medicine.medicineName}`}
-                >
-                  AddToCart
-                </Link>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </div>
+  return (
+    <Container>
+      <Row className="mt-3 mb-3">
+        <Col>
+          <Card
+            className="p-4"
+            style={{
+              backgroundColor: "rgba(0, 0, 0, 0.3)",
+              border: "none",
+              borderRadius: "15px",
+              boxShadow: "0 10px 20px rgba(0, 0, 0, 0.2)",
+            }}
+          >
+            <CardHeader className="fw-bolder text-white text-center">
+              <h3>Medicine List</h3>
+            </CardHeader>
+            <CardBody>
+              <Form>
+                <FormGroup>
+                  <Input
+                    className="Search"
+                    type="text"
+                    onChange={handleFilter}
+                    placeholder="Search Medicines"
+                    style={{ backgroundColor: "rgba(255, 255, 255, 0.3)" }}
+                  />
+                </FormGroup>
+              </Form>
+              <ListGroup flush>
+                <Row>
+                  {filterData.map((medicine) => (
+                    <Col md={6} key={medicine.id}>
+                      <Card className="mb-4">
+                        <CardBody>
+                          <ListGroupItem>Id : {medicine.id}</ListGroupItem>
+                          <ListGroupItem>
+                            Medicine Name : {medicine.medicineName}
+                          </ListGroupItem>
+                          <ListGroupItem>
+                            Medicine Composition :{" "}
+                            {medicine.medicineComposition}
+                          </ListGroupItem>
+                          <ListGroupItem>
+                            Medicine Quantity : {medicine.medicineQuantity}
+                          </ListGroupItem>
+                          <ListGroupItem>
+                            Medicine Price : {medicine.medicinePrice}
+                          </ListGroupItem>
+                          <ListGroupItem>
+                            Expiry Date : {medicine.expiryDate}
+                          </ListGroupItem>
+                          <ListGroupItem className="d-flex justify-content-between">
+                            <Link
+                              className="btn btn-link"
+                              to={`/addtocart/${medicine.medicineName}`}
+                              style={{
+                                color: "#007bff",
+                                backgroundColor: "black",
+                                textDecoration: "none",
+                              }}
+                            >
+                              Add To Cart
+                            </Link>
+                          </ListGroupItem>
+                        </CardBody>
+                      </Card>
+                    </Col>
+                  ))}
+                </Row>
+              </ListGroup>
+            </CardBody>
+          </Card>
+        </Col>
+      </Row>
+    </Container>
   );
 };
+
 export default MedicineListUser;

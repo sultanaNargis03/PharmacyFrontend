@@ -110,7 +110,7 @@ const MedicineListAdmin = () => {
               <ListGroup flush>
                 <Row>
                   {filterData.map((medicine) => (
-                    <Col md={4} key={medicine.id}>
+                    <Col md={6} key={medicine.id}>
                       <Card className="mb-4">
                         <CardBody>
                           <ListGroupItem>Id : {medicine.id}</ListGroupItem>

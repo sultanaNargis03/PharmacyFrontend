@@ -3,6 +3,23 @@ import { useState, useEffect } from "react";
 import { getAuthToken } from "../../helper/axios_helper";
 import { Link } from "react-router-dom";
 import CustomNavbar from "../CustomNavbar";
+import {
+  Form,
+  FormGroup,
+  FormText,
+  Label,
+  Input,
+  Col,
+  Container,
+  Card,
+  CardHeader,
+  CardBody,
+  Button,
+  Row,
+  FormFeedback,
+  ListGroupItem,
+  ListGroup,
+} from "reactstrap";
 
 const CartList = () => {
   const [carts, setCarts] = useState([]);
@@ -43,23 +60,69 @@ const CartList = () => {
     }
   };
   return (
-    <div>
-      <h1>your Cart</h1>
-      <div>
-        {carts.map((c) => (
-          <div key={c.id}>
-            <div>Id : {c.id}</div>
-            <div>Item Name : {c.itemName}</div>
-            <div>Item Quantity : {c.itemQuantity}</div>
-            <div>Item Price : {c.itemPrice}</div>
-            <button onClick={() => removeCart(c.id)}>Remove</button>
-          </div>
-        ))}
-      </div>
-      <Link className="btn btn-link" to={"/checkout"}>
-        checkout
-      </Link>
-    </div>
+    <Container>
+      <Row className="mt-3 mb-3">
+        <Col sm={{ size: 6, offset: 3 }}>
+          <Card
+            className="p-4"
+            style={{
+              backgroundColor: "rgba(0, 0, 0, 0.3)",
+              border: "none",
+              borderRadius: "15px",
+              boxShadow: "0 10px 20px rgba(0, 0, 0, 0.2)",
+            }}
+          >
+            <CardHeader className="fw-bolder text-white text-center">
+              <h3>Your Cart</h3>
+            </CardHeader>
+            <CardBody>
+              {carts.length == 0 && (
+                <div className="text-center text-white">
+                  <h6>There is no item in the cart!!</h6>
+                </div>
+              )}
+              <ListGroup flush>
+                <Row>
+                  {carts.map((c) => (
+                    <div key={c.id}>
+                      <Card className="mb-4">
+                        <CardBody>
+                          <ListGroupItem>Id : {c.id}</ListGroupItem>
+                          <ListGroupItem>
+                            Item Name : {c.itemName}
+                          </ListGroupItem>
+                          <ListGroupItem>
+                            Item Quantity : {c.itemQuantity}
+                          </ListGroupItem>
+                          <ListGroupItem>
+                            Item Price : {c.itemPrice}
+                          </ListGroupItem>
+                        </CardBody>
+                      </Card>
+                    </div>
+                  ))}
+                </Row>
+              </ListGroup>
+              <Container className="mt-4">
+                <Button
+                  tag={Link}
+                  to={"/checkout"}
+                  color="link"
+                  disabled={carts.length === 0}
+                  style={{
+                    color: carts.length === 0 ? "grey" : "#007bff",
+                    backgroundColor: "black",
+                    textDecoration: "none",
+                  }}
+                >
+                  Checkout
+                </Button>
+              </Container>
+            </CardBody>
+          </Card>
+        </Col>
+      </Row>
+    </Container>
   );
 };
 export default CartList;

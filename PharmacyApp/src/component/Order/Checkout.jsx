@@ -1,15 +1,24 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { getAuthToken } from "../../helper/axios_helper";
-import CustomNavbar from "../CustomNavbar";
 import { ToastContainer, toast } from "react-toastify";
+import {
+  Container,
+  Row,
+  Col,
+  Card,
+  CardHeader,
+  CardBody,
+  ListGroup,
+  ListGroupItem,
+} from "reactstrap";
 
 const Checkout = () => {
-  const [checkouts, setCheckouts] = useState([]);
-
+  const [checkouts, setCheckouts] = useState({});
   const token = getAuthToken();
 
   useEffect(() => {
+    console.log("Component mounted, fetching orders...");
     fetchOrders();
   }, []);
 
@@ -23,36 +32,66 @@ const Checkout = () => {
           },
         }
       );
-      toast.success("Your order has been placed successfuly");
+      toast.success("Your order has been placed successfully");
       setCheckouts(response.data);
+      console.log(response.data);
     } catch (error) {
-      console.error("Failed to fetch carts:", error);
+      console.error("Failed to fetch orders:", error);
+      toast.error("Something went wrong");
     }
   };
 
   return (
-    <div>
-      <h1>your order details</h1>
-      <div>
-        <div>
-          your Order has been sucessfully placed with order id: {checkouts.id}
-        </div>
-        <div>Total Quantity : {checkouts.totalItem}</div>
-        <div>Total Price : {checkouts.totalPrice}</div>
-        <div>
-          Order Items are:
-          <ul>
-            {checkouts.itemNames &&
-              checkouts.itemNames.map((item, index) => (
-                <li key={index}>{item}</li>
-              ))}
-          </ul>
-          {/* {checkouts.map((order) => (
-            <div>{order.itemNames}</div>
-          ))} */}
-        </div>
-      </div>
-    </div>
+    <Container>
+      <ToastContainer />
+      <Row className="mt-3 mb-3">
+        <Col sm={{ size: 6, offset: 3 }}>
+          <Card
+            className="p-4"
+            style={{
+              backgroundColor: "rgba(0, 0, 0, 0.3)",
+              border: "none",
+              borderRadius: "15px",
+              boxShadow: "0 10px 20px rgba(0, 0, 0, 0.2)",
+            }}
+          >
+            <CardHeader className="fw-bolder text-white text-center">
+              <h3>Your Order Details</h3>
+            </CardHeader>
+            <CardBody>
+              <ListGroup flush>
+                <Row>
+                  <Card className="mb-4">
+                    <CardBody>
+                      <ListGroupItem>
+                        Your order has been successfully placed with order ID:{" "}
+                        {checkouts.id}
+                      </ListGroupItem>
+                      <ListGroupItem>
+                        Total Quantity: {checkouts.totalItem}
+                      </ListGroupItem>
+                      <ListGroupItem>
+                        Total Price: {checkouts.totalPrice}
+                      </ListGroupItem>
+                      <ListGroupItem>
+                        Order Items:
+                        <ul>
+                          {checkouts.itemNames &&
+                            checkouts.itemNames.map((item, index) => (
+                              <li key={index}>{item}</li>
+                            ))}
+                        </ul>
+                      </ListGroupItem>
+                    </CardBody>
+                  </Card>
+                </Row>
+              </ListGroup>
+            </CardBody>
+          </Card>
+        </Col>
+      </Row>
+    </Container>
   );
 };
+
 export default Checkout;
