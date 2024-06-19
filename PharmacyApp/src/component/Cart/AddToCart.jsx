@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { getAuthToken } from "../../helper/axios_helper";
 import { Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
@@ -17,6 +17,7 @@ import {
   Button,
   Row,
 } from "reactstrap";
+import { CartContext } from "./CartContext";
 
 const AddToCart = () => {
   const [medicine, setMedicine] = useState({
@@ -71,6 +72,7 @@ const AddToCart = () => {
           },
         }
       );
+
       toast.success(medicineName + " Added to cart successfuly");
       console.log(response.data);
     } catch (error) {

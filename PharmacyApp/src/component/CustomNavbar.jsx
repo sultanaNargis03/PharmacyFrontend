@@ -1,6 +1,6 @@
 // src/component/CustomNavbar.jsx
 import { NavLink as ReactLink, useNavigate } from "react-router-dom";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import {
   Collapse,
   Navbar,
@@ -14,6 +14,7 @@ import {
 import { getUsername } from "../helper/axios_helper";
 import { AuthContext } from "./Auth/AuthContext";
 import { getCurrentUserRole } from "./Auth/Auth";
+import { CartContext } from "../component/Cart/CartContext";
 
 const CustomNavbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -22,6 +23,14 @@ const CustomNavbar = () => {
   const role = getCurrentUserRole();
   const username = getUsername();
   const navigate = useNavigate();
+  const { cartCount } = useContext(CartContext);
+
+  useEffect(() => {
+    const isAuthenticated = JSON.parse(localStorage.getItem("isAuthenticated"));
+    if (!isAuthenticated) {
+      navigate("/login");
+    }
+  }, []);
 
   const handleLogout = () => {
     logout(() => navigate("/"));
@@ -31,7 +40,7 @@ const CustomNavbar = () => {
     <div>
       <Navbar className="navbar-custom" color="dark" dark expand="md">
         <NavbarBrand tag={ReactLink} to="/">
-          Pharma
+          <i className="fas fa-prescription-bottle-alt"></i> Pharma
         </NavbarBrand>
         <NavbarToggler onClick={() => setIsOpen(!isOpen)} />
         <Collapse isOpen={isOpen} navbar>
@@ -39,7 +48,7 @@ const CustomNavbar = () => {
             {isAuthenticated && (
               <NavItem>
                 <NavLink tag={ReactLink} to="/home">
-                  Home
+                  <i className="fas fa-home"></i> Home
                 </NavLink>
               </NavItem>
             )}
@@ -47,12 +56,12 @@ const CustomNavbar = () => {
               <>
                 <NavItem>
                   <NavLink tag={ReactLink} to="/medicinelistadmin">
-                    Medicines
+                    <i className="fas fa-pills"></i> Medicines
                   </NavLink>
                 </NavItem>
                 <NavItem>
                   <NavLink tag={ReactLink} to="/addmedicine">
-                    Add Medicine
+                    <i className="fas fa-plus-circle"></i> Add Medicine
                   </NavLink>
                 </NavItem>
               </>
@@ -61,17 +70,18 @@ const CustomNavbar = () => {
               <>
                 <NavItem>
                   <NavLink tag={ReactLink} to="/medicinelistuser">
-                    Medicines
+                    <i className="fas fa-pills"></i> Medicines
                   </NavLink>
                 </NavItem>
                 <NavItem>
                   <NavLink tag={ReactLink} to="/cartlist">
-                    Your Cart
+                    <i className="fas fa-shopping-cart"></i>
+                    Cart {cartCount}
                   </NavLink>
                 </NavItem>
                 <NavItem>
                   <NavLink tag={ReactLink} to="/orderlist">
-                    Your Orders
+                    <i className="fas fa-box"></i> Your Orders
                   </NavLink>
                 </NavItem>
               </>
@@ -81,28 +91,34 @@ const CustomNavbar = () => {
             {isAuthenticated ? (
               <>
                 <NavItem>
-                  <NavLink onClick={handleLogout}>Logout</NavLink>
+                  <NavLink onClick={handleLogout}>
+                    <i className="fas fa-sign-out-alt"></i> Logout
+                  </NavLink>
                 </NavItem>
                 <NavItem>
-                  <NavLink>{username}</NavLink>
+                  <NavLink>
+                    <i className="fas fa-user"></i> {username}
+                  </NavLink>
                 </NavItem>
               </>
             ) : (
               <>
                 <NavItem>
                   <NavLink tag={ReactLink} to="/login">
-                    Sign In
+                    <i className="fas fa-sign-in-alt"></i> Sign In
                   </NavLink>
                 </NavItem>
                 <NavItem>
                   <NavLink tag={ReactLink} to="/register">
-                    Sign Up
+                    <i className="fas fa-user-plus"></i> Sign Up
                   </NavLink>
                 </NavItem>
               </>
             )}
           </Nav>
-          <NavbarText>Wishing you good health</NavbarText>
+          <NavbarText>
+            <i className="fas fa-heartbeat"></i> Wishing you good health
+          </NavbarText>
         </Collapse>
       </Navbar>
     </div>

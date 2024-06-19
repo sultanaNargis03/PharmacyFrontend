@@ -4,6 +4,7 @@ import {
   Route,
   BrowserRouter,
 } from "react-router-dom";
+import "@fortawesome/fontawesome-free/css/all.min.css";
 
 import "./App.css";
 
@@ -36,36 +37,43 @@ import Home from "./component/Home";
 import MedicineListAdmin from "./component/Medicine/MedicineListAdmin";
 import MedicineListUser from "./component/Medicine/MedicineListUser";
 import SessionExpired from "./component/Auth/SessionExpired";
+import { CartProvider } from "./component/Cart/CartContext";
 
 function App() {
   return (
     <BrowserRouter>
-      <ToastContainer />
-      <CustomNavbar />
-      {/* <Sidebar /> */}
-      <Routes>
-        <Route path="/sidebar" element={<Sidebar />} exact />
-        <Route path="/" element={<Welcome />} exact />
-        <Route path="/home" element={<Home />} exact />
-        <Route path="/navbar" element={<CustomNavbar />} exact />
-        <Route path="/register" element={<Register />} exact />
-        <Route path="/login" element={<Login />} exact />
-        <Route path="/sessionexpired" element={<SessionExpired />} exact />
+      <CartProvider>
+        <ToastContainer />
+        <CustomNavbar />
+        {/* <Sidebar /> */}
+        <Routes>
+          <Route path="/sidebar" element={<Sidebar />} exact />
+          <Route path="/" element={<Welcome />} exact />
+          <Route path="/home" element={<Home />} exact />
+          <Route path="/navbar" element={<CustomNavbar />} exact />
+          <Route path="/register" element={<Register />} exact />
+          <Route path="/login" element={<Login />} exact />
+          <Route path="/sessionexpired" element={<SessionExpired />} exact />
 
-        <Route
-          path="/medicinelistadmin"
-          element={<MedicineListAdmin />}
-          exact
-        />
-        <Route path="/medicinelistuser" element={<MedicineListUser />} exact />
-        <Route path="/addmedicine" element={<AddMedicine />} />
-        <Route path="/edit/:id" element={<EditMedicine />} />
-        <Route path="/addtocart/:medicineName" element={<AddToCart />} />
-        <Route path="/cartlist" element={<CartList />} />
-        <Route path="/checkout" element={<Checkout />} />
-        <Route path="/orderlist" element={<OrderList />} />
-      </Routes>
-      {/* <Footer /> */}
+          <Route
+            path="/medicinelistadmin"
+            element={<MedicineListAdmin />}
+            exact
+          />
+          <Route
+            path="/medicinelistuser"
+            element={<MedicineListUser />}
+            exact
+          />
+          <Route path="/addmedicine" element={<AddMedicine />} />
+          <Route path="/edit/:id" element={<EditMedicine />} />
+          <Route path="/addtocart/:medicineName" element={<AddToCart />} />
+          <Route path="/cartlist" element={<CartList />} />
+          <Route path="/checkout" element={<Checkout />} />
+          <Route path="/orderlist" element={<OrderList />} />
+        </Routes>
+        {/* <Footer /> */}
+      </CartProvider>
     </BrowserRouter>
   );
 }
