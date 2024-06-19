@@ -35,6 +35,7 @@ import Home from "./component/Home";
 
 import MedicineListAdmin from "./component/Medicine/MedicineListAdmin";
 import MedicineListUser from "./component/Medicine/MedicineListUser";
+import SessionExpired from "./component/Auth/SessionExpired";
 
 function App() {
   return (
@@ -49,6 +50,7 @@ function App() {
         <Route path="/navbar" element={<CustomNavbar />} exact />
         <Route path="/register" element={<Register />} exact />
         <Route path="/login" element={<Login />} exact />
+        <Route path="/sessionexpired" element={<SessionExpired />} exact />
 
         <Route
           path="/medicinelistadmin"

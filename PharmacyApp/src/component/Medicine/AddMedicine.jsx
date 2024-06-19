@@ -61,8 +61,16 @@ const AddMedicine = () => {
     <Container className="mt-3 mb-3">
       <Row>
         <Col sm={{ size: 6, offset: 3 }}>
-          <Card color="dark" inverse className="bg-transparent border-0 p-4 ">
-            <CardHeader className="bg-transparent border-1">
+          <Card
+            className=" p-4 text-white"
+            style={{
+              backgroundColor: "rgba(0, 0, 0, 0.3)",
+              border: "none",
+              borderRadius: "15px",
+              boxShadow: "0 10px 20px rgba(0, 0, 0, 0.2)",
+            }}
+          >
+            <CardHeader className="fw-bolder text-white text-center">
               <h3>Add Medicine</h3>
             </CardHeader>
             <CardBody>

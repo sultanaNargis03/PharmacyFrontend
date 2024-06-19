@@ -64,12 +64,12 @@ const OrderList = () => {
               <h3>Order Items</h3>
             </CardHeader>
             <CardBody>
+              {Orders.length == 0 && (
+                <div className="text-center text-white">
+                  <h6>No order has been placed yet!!</h6>
+                </div>
+              )}
               <ListGroup flush>
-                {Orders.length == 0 && (
-                  <div className="text-center text-white">
-                    <h6>No order has been placed yet!!</h6>
-                  </div>
-                )}
                 <Row>
                   {Orders.map((order) => (
                     <div key={order.id}>

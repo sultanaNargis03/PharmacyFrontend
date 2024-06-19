@@ -84,7 +84,7 @@ const AddToCart = () => {
       <Row className="mt-3 mb-3">
         <Col sm={{ size: 6, offset: 3 }}>
           <Card
-            className="p-4"
+            className="p-4 text-white"
             style={{
               backgroundColor: "rgba(0, 0, 0, 0.3)",
               border: "none",
@@ -98,9 +98,7 @@ const AddToCart = () => {
             <CardBody>
               <Form>
                 <FormGroup>
-                  <Label for="medicineQuantity" className="text-white">
-                    Medicine Quantity
-                  </Label>
+                  <Label for="medicineQuantity">Medicine Quantity</Label>
                   <Input
                     type="number"
                     name="medicineQuantity"

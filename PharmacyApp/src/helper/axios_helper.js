@@ -43,3 +43,21 @@ export const request = (method, url, data) => {
     data: data,
   });
 };
+// Add Axios interceptor to handle 401 responses
+axios.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response && error.response.status === 401) {
+      // Clear authentication data and redirect to login page
+      window.localStorage.removeItem("auth_token");
+      window.localStorage.removeItem("isLogedIn");
+      window.localStorage.removeItem("data");
+      window.localStorage.removeItem("role");
+
+      // Redirect to login page
+      window.location.href = "/sessionexpired";
+      console.log("expired");
+    }
+    return Promise.reject(error);
+  }
+);

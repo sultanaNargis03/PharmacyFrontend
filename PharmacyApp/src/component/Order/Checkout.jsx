@@ -89,7 +89,7 @@ const Checkout = () => {
                     <Card className="mb-4">
                       <CardBody>
                         <ListGroupItem>
-                          Your order has been successfully placed with order ID:{" "}
+                          Your order has been successfully placed with order ID:
                           {checkouts.id}
                         </ListGroupItem>
                         <ListGroupItem>

@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { setAuthHeader } from "../../helper/axios_helper";
 
 import { ToastContainer, toast } from "react-toastify";
-import { setCurrentUserRole } from "./Auth";
+import { isLoggedIn, setCurrentUserRole } from "./Auth";
 import { AuthContext } from "./AuthContext";
 import {
   Form,
@@ -46,6 +46,7 @@ const Login = () => {
       localStorage.setItem("data", JSON.stringify(response.data));
       setAuthHeader(response.data.accessToken);
       setCurrentUserRole(response.data.role);
+
       login();
       navigate("/home");
     } catch (error) {
@@ -132,7 +133,7 @@ const Login = () => {
                   </Col>
                   <Col sm={6} className="text-center">
                     <img
-                      src="https://lh3.googleusercontent.com/proxy/UUK4RVbR-X34I_VTVCALR-apNawOtfPTBV2ephZlX7hKDdchs6ISVJaNfikTIA3mttc42wKnB0LJ2Q"
+                      src="src/assets/login.jpg"
                       alt="Image"
                       style={{ maxWidth: "80%", height: "80%" }}
                     />

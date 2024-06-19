@@ -12,7 +12,7 @@ import {
   NavbarText,
 } from "reactstrap";
 import { getUsername } from "../helper/axios_helper";
-import { AuthContext } from "./Auth/AuthContext"; // Adjust the path if necessary
+import { AuthContext } from "./Auth/AuthContext";
 import { getCurrentUserRole } from "./Auth/Auth";
 
 const CustomNavbar = () => {

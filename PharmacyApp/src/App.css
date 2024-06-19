@@ -7,11 +7,12 @@
 }
 
 body {
-  background-image: url("https://st5.depositphotos.com/30551032/64440/i/450/depositphotos_644402218-stock-photo-tablets-pharmacology-medicine-pharmacy-health.jpg");
+  background-image: url("src/assets/med2.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
   /* background-position: center center; */
+  background-position: 50% 50%;
 
   animation: zoomOut 20s infinite; /* Apply the zoom-out animation */
 }
