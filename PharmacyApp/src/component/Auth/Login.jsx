@@ -51,7 +51,7 @@ const Login = () => {
       setCurrentUserRole(response.data.role);
       fetchCartDetails(response.data.accessToken);
       login();
-      //history.push("/home");
+
       navigate("/home");
     } catch (error) {
       console.error("Failed to login:", error);
@@ -101,7 +101,7 @@ const Login = () => {
                           fontSize: 15,
                         }}
                       >
-                        USER NAME
+                        USER NAME <span style={{ color: "red" }}>*</span>
                       </Label>
                       <Input
                         type="text"
@@ -109,6 +109,7 @@ const Login = () => {
                         value={loginDto.username}
                         placeholder="Enter Here..."
                         onChange={handleChange}
+                        required
                       />
                     </FormGroup>
                     <FormGroup>
@@ -120,7 +121,7 @@ const Login = () => {
                           fontSize: 15,
                         }}
                       >
-                        PASSWORD
+                        PASSWORD <span style={{ color: "red" }}>*</span>
                       </Label>
                       <Input
                         type="password"
@@ -128,6 +129,7 @@ const Login = () => {
                         value={loginDto.password}
                         placeholder="Enter Here..."
                         onChange={handleChange}
+                        required
                       />
                     </FormGroup>
 

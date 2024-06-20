@@ -87,12 +87,17 @@ const AddToCart = () => {
           },
         }
       );
+
       fetchCartCount();
       toast.success(medicineName + " Added to cart successfuly");
       console.log(response.data);
     } catch (error) {
-      console.error("Failed to add to cart:", error);
-      console.log(error.response.data);
+      if (error.response && error.response.data) {
+        toast.error(error.response.data);
+      } else {
+        console.error("Failed to add to cart:", error);
+        toast.error("Failed to add to cart");
+      }
     }
   };
 
@@ -115,12 +120,15 @@ const AddToCart = () => {
             <CardBody>
               <Form>
                 <FormGroup>
-                  <Label for="medicineQuantity">Medicine Quantity</Label>
+                  <Label for="medicineQuantity">
+                    Medicine Quantity <span style={{ color: "red" }}>*</span>
+                  </Label>
                   <Input
                     type="number"
                     name="medicineQuantity"
                     value={medicine.medicineQuantity}
                     onChange={handleChange}
+                    required
                     placeholder="Enter here"
                     style={{ backgroundColor: "rgba(255, 255, 255, 0.3)" }}
                   />

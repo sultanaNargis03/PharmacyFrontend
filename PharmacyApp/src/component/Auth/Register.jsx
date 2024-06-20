@@ -56,30 +56,23 @@ const Register = () => {
     if (usernameTaken) {
       toast.error("Username is already taken");
       return;
-      try {
-        await axios.post(
-          "http://localhost:8088/Pharmacy/api/auth/register",
-          registerDto
-        );
-        toast.success("Registration Sucess");
-        navigate("/login");
-      } catch (error) {
-        console.error("Failed to register user:", error);
-        toast.error("something went wroong!");
-      }
+    }
+    try {
+      await axios.post(
+        "http://localhost:8088/Pharmacy/api/auth/register",
+        registerDto
+      );
+      toast.success("Registration Sucess");
+      navigate("/login");
+    } catch (error) {
+      console.error("Failed to register user:", error);
+      toast.error("something went wroong!");
     }
   };
   const handleChange = (e) => {
     setRegisterDto({ ...registerDto, [e.target.name]: e.target.value });
   };
-  // const handleReset = () => {
-  //   setFormData({
-  //     username: "",
-  //     password: "",
-  //     email: "",
-  //     phnNo: "",
-  //   });
-  // };
+
   return (
     <Container>
       <Row className="mt-4 mb-4">
@@ -99,7 +92,7 @@ const Register = () => {
                       fontSize: 15,
                     }}
                   >
-                    USER NAME
+                    USER NAME <span style={{ color: "red" }}>*</span>
                   </Label>
 
                   <Input
@@ -108,25 +101,14 @@ const Register = () => {
                     value={registerDto.username}
                     placeholder="Enter Here..."
                     onChange={handleChange}
+                    required
                   />
                   {usernameTaken && (
-                    // <div>
-                    //   <Input invalid />
-                    //   <FormFeedback tooltip>
-                    //     Oh noes! that name is already taken
-                    //   </FormFeedback>
-                    // </div>
                     <FormText color="danger">
                       Oh noes! that name is already taken
                     </FormText>
                   )}
                   {!usernameTaken && registerDto.username != "" && (
-                    // <div>
-                    //   <Input invalid />
-                    //   <FormFeedback tooltip>
-                    //     Oh noes! that name is already taken
-                    //   </FormFeedback>
-                    // </div>
                     <FormText color="success">
                       Sweet! that name is availble
                     </FormText>
@@ -141,7 +123,7 @@ const Register = () => {
                       fontSize: 15,
                     }}
                   >
-                    PASSWORD
+                    PASSWORD <span style={{ color: "red" }}>*</span>
                   </Label>
 
                   <Input
@@ -150,6 +132,7 @@ const Register = () => {
                     value={registerDto.password}
                     placeholder="Enter Here..."
                     onChange={handleChange}
+                    required
                   />
                 </FormGroup>
                 <FormGroup>
@@ -161,7 +144,7 @@ const Register = () => {
                       fontSize: 15,
                     }}
                   >
-                    EMAIL
+                    EMAIL <span style={{ color: "red" }}>*</span>
                   </Label>
 
                   <Input
@@ -170,6 +153,7 @@ const Register = () => {
                     value={registerDto.email}
                     placeholder="Enter Here..."
                     onChange={handleChange}
+                    required
                   />
                 </FormGroup>
                 <FormGroup>
@@ -181,7 +165,7 @@ const Register = () => {
                       fontSize: 15,
                     }}
                   >
-                    PHONE NO
+                    PHONE NO <span style={{ color: "red" }}>*</span>
                   </Label>
 
                   <Input
@@ -190,6 +174,7 @@ const Register = () => {
                     value={registerDto.phnNo}
                     placeholder="Enter Here..."
                     onChange={handleChange}
+                    required
                   />
                 </FormGroup>
 

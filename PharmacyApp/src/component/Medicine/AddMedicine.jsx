@@ -76,12 +76,15 @@ const AddMedicine = () => {
             <CardBody>
               <Form onSubmit={handleSubmit}>
                 <FormGroup>
-                  <Label for="medicineName">Medicine Name</Label>
+                  <Label for="medicineName">
+                    Medicine Name <span style={{ color: "red" }}>*</span>
+                  </Label>
                   <Input
                     type="text"
                     name="medicineName"
                     value={medicine.medicineName}
                     onChange={handleChange}
+                    required
                     placeholder="Enter Here..."
                     style={{
                       backgroundColor: "rgba(255, 255, 255, 0.3)",
@@ -91,12 +94,15 @@ const AddMedicine = () => {
                   />
                 </FormGroup>
                 <FormGroup>
-                  <Label for="medicineComposition">Medicine Composition</Label>
+                  <Label for="medicineComposition">
+                    Medicine Composition <span style={{ color: "red" }}>*</span>
+                  </Label>
                   <Input
                     type="text"
                     name="medicineComposition"
                     value={medicine.medicineComposition}
                     onChange={handleChange}
+                    required
                     placeholder="Enter Here..."
                     style={{
                       backgroundColor: "rgba(255, 255, 255, 0.3)",
@@ -106,12 +112,15 @@ const AddMedicine = () => {
                   />
                 </FormGroup>
                 <FormGroup>
-                  <Label for="medicinePrice">Medicine Price</Label>
+                  <Label for="medicinePrice">
+                    Medicine Price <span style={{ color: "red" }}>*</span>
+                  </Label>
                   <Input
                     type="text"
                     name="medicinePrice"
                     value={medicine.medicinePrice}
                     onChange={handleChange}
+                    required
                     placeholder="Enter Here..."
                     style={{
                       backgroundColor: "rgba(255, 255, 255, 0.3)",
@@ -121,12 +130,15 @@ const AddMedicine = () => {
                   />
                 </FormGroup>
                 <FormGroup>
-                  <Label for="medicineQuantity">Medicine Quantity</Label>
+                  <Label for="medicineQuantity">
+                    Medicine Quantity <span style={{ color: "red" }}>*</span>
+                  </Label>
                   <Input
                     type="number"
                     name="medicineQuantity"
                     value={medicine.medicineQuantity}
                     onChange={handleChange}
+                    required
                     placeholder="Enter Here..."
                     style={{
                       backgroundColor: "rgba(255, 255, 255, 0.3)",
@@ -136,12 +148,15 @@ const AddMedicine = () => {
                   />
                 </FormGroup>
                 <FormGroup>
-                  <Label for="expiryDate">Expiry Date</Label>
+                  <Label for="expiryDate">
+                    Expiry Date <span style={{ color: "red" }}>*</span>
+                  </Label>
                   <Input
                     type="date"
                     name="expiryDate"
                     value={medicine.expiryDate}
                     onChange={handleChange}
+                    required
                     placeholder="Enter Here..."
                     style={{
                       backgroundColor: "rgba(255, 255, 255, 0.3)",
