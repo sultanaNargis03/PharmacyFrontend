@@ -20,6 +20,7 @@ import {
   Row,
   CardTitle,
 } from "reactstrap";
+import { CartContext } from "../Cart/CartContext";
 
 const Login = () => {
   const [loginDto, setLoginDto] = useState({
@@ -28,6 +29,8 @@ const Login = () => {
   });
   const { login } = useContext(AuthContext);
   const navigate = useNavigate();
+  const { updateCartCount } = useContext(CartContext); // Use CartContext
+  // const history = useHistory();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -46,8 +49,9 @@ const Login = () => {
       localStorage.setItem("data", JSON.stringify(response.data));
       setAuthHeader(response.data.accessToken);
       setCurrentUserRole(response.data.role);
-
+      fetchCartDetails(response.data.accessToken);
       login();
+      //history.push("/home");
       navigate("/home");
     } catch (error) {
       console.error("Failed to login:", error);
@@ -57,6 +61,22 @@ const Login = () => {
 
   const handleChange = (e) => {
     setLoginDto({ ...loginDto, [e.target.name]: e.target.value });
+  };
+
+  const fetchCartDetails = async (token) => {
+    try {
+      const response = await axios.get(
+        "http://localhost:8088/Pharmacy/api-cart/cart",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      updateCartCount(response.data.length); // Update cart count in context
+    } catch (error) {
+      console.error("Failed to fetch cart details:", error);
+    }
   };
 
   return (

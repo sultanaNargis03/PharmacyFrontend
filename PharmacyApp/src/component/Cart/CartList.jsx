@@ -85,7 +85,8 @@ const CartList = () => {
               <CardBody>
                 {carts.length === 0 && (
                   <div className="text-center text-white">
-                    <h6>There is no item in the cart!!</h6>
+                    <h5>Add items to your cart !!</h5>
+                    <p>Your cart is empty</p>
                   </div>
                 )}
                 <ListGroup flush>

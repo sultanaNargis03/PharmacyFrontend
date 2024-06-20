@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { getAuthToken } from "../../helper/axios_helper";
 import { ToastContainer, toast } from "react-toastify";
@@ -13,16 +13,34 @@ import {
   ListGroupItem,
   Spinner,
 } from "reactstrap";
+import { CartContext } from "../Cart/CartContext";
 
 const Checkout = () => {
   const [checkouts, setCheckouts] = useState({});
   const [loading, setLoading] = useState(true);
   const token = getAuthToken();
+  const { updateCartCount } = useContext(CartContext);
 
   useEffect(() => {
     console.log("Component mounted, fetching orders...");
     fetchOrders();
   }, []);
+
+  const fetchCartCount = async () => {
+    try {
+      const response = await axios.get(
+        "http://localhost:8088/Pharmacy/api-cart/cart",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      updateCartCount(response.data.length); // Update cart count in context
+    } catch (error) {
+      console.error("Failed to fetch cart count:", error);
+    }
+  };
 
   const fetchOrders = async () => {
     try {
@@ -37,6 +55,7 @@ const Checkout = () => {
       toast.success("Your order has been placed successfully");
       setCheckouts(response.data);
       console.log(response.data);
+      fetchCartCount();
     } catch (error) {
       console.error("Failed to fetch orders:", error);
       toast.error("Something went wrong");

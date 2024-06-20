@@ -30,6 +30,7 @@ const AddToCart = () => {
 
   const { medicineName } = useParams();
   const token = getAuthToken();
+  const { updateCartCount } = useContext(CartContext);
 
   const handleChange = (e) => {
     setMedicine({ ...medicine, [e.target.name]: e.target.value });
@@ -38,7 +39,21 @@ const AddToCart = () => {
   useEffect(() => {
     fetchMedicine();
   }, []);
-
+  const fetchCartCount = async () => {
+    try {
+      const response = await axios.get(
+        "http://localhost:8088/Pharmacy/api-cart/cart",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      updateCartCount(response.data.length); // Update cart count in context
+    } catch (error) {
+      console.error("Failed to fetch cart count:", error);
+    }
+  };
   const fetchMedicine = async () => {
     try {
       const response = await axios.get(
@@ -72,7 +87,7 @@ const AddToCart = () => {
           },
         }
       );
-
+      fetchCartCount();
       toast.success(medicineName + " Added to cart successfuly");
       console.log(response.data);
     } catch (error) {
