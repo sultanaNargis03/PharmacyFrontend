@@ -44,9 +44,8 @@ function App() {
     <BrowserRouter>
       <ToastContainer />
       <CustomNavbar />
-      {/* <Sidebar /> */}
+
       <Routes>
-        <Route path="/sidebar" element={<Sidebar />} exact />
         <Route path="/" element={<Welcome />} exact />
         <Route path="/home" element={<Home />} exact />
         <Route path="/navbar" element={<CustomNavbar />} exact />
@@ -62,12 +61,11 @@ function App() {
         <Route path="/medicinelistuser" element={<MedicineListUser />} exact />
         <Route path="/addmedicine" element={<AddMedicine />} />
         <Route path="/edit/:id" element={<EditMedicine />} />
-        <Route path="/addtocart/:medicineName" element={<AddToCart />} />
+        <Route path="/addtocart/:medicineName/*" element={<AddToCart />} />
         <Route path="/cartlist" element={<CartList />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/orderlist" element={<OrderList />} />
       </Routes>
-      {/* <Footer /> */}
     </BrowserRouter>
   );
 }

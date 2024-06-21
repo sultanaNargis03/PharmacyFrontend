@@ -1,6 +1,7 @@
 // src/component/CustomNavbar.jsx
 import { NavLink as ReactLink, useNavigate } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
 import {
   Collapse,
   Navbar,
@@ -24,13 +25,6 @@ const CustomNavbar = () => {
   const username = getUsername();
   const navigate = useNavigate();
   const { cartCount } = useContext(CartContext);
-
-  useEffect(() => {
-    const isAuthenticated = JSON.parse(localStorage.getItem("isAuthenticated"));
-    if (!isAuthenticated) {
-      navigate("/login");
-    }
-  }, []);
 
   const handleLogout = () => {
     logout(() => navigate("/"));

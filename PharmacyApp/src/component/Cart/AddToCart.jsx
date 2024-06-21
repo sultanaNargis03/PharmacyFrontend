@@ -136,6 +136,7 @@ const AddToCart = () => {
 
                 <Container className="text-center">
                   <Button
+                    type="submit"
                     style={{
                       color: "green",
                       backgroundColor: "black",

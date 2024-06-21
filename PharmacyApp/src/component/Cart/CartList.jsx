@@ -22,6 +22,7 @@ import {
   ListGroup,
 } from "reactstrap";
 import { CartContext } from "./CartContext";
+import { ToastContainer, toast } from "react-toastify";
 
 const CartList = () => {
   const [carts, setCarts] = useState([]);
@@ -58,7 +59,7 @@ const CartList = () => {
           Authorization: `Bearer ${token}`,
         },
       });
-
+      toast.success("Cart removed successfully!!");
       fetchCarts();
     } catch (error) {
       console.error("Failed to remove cart:", error);

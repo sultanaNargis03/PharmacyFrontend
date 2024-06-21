@@ -30,7 +30,6 @@ const Login = () => {
   const { login } = useContext(AuthContext);
   const navigate = useNavigate();
   const { updateCartCount } = useContext(CartContext); // Use CartContext
-  // const history = useHistory();
 
   const handleSubmit = async (e) => {
     e.preventDefault();

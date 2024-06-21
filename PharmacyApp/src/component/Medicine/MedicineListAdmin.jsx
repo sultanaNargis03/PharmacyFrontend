@@ -20,6 +20,7 @@ import {
   ListGroupItem,
   ListGroup,
 } from "reactstrap";
+import { ToastContainer, toast } from "react-toastify";
 
 const MedicineListAdmin = () => {
   const [medicines, setMedicines] = useState([]);
@@ -64,7 +65,7 @@ const MedicineListAdmin = () => {
           Authorization: `Bearer ${token}`,
         },
       });
-
+      toast.success("Medicine deleted successfully!!");
       fetchMedicines();
     } catch (error) {
       console.error("Failed to delete medicine:", error);
