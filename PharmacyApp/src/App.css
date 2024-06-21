@@ -11,17 +11,19 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  /* background-position: center center; */
   background-position: 50% 50%;
 
-  animation: zoomOut 20s infinite; /* Apply the zoom-out animation */
+  animation: parallaxEffect 20s infinite linear; /* Apply the parallax animation */
 }
 
-@keyframes zoomOut {
+@keyframes parallaxEffect {
   0% {
-    background-size: 110%; /* Start slightly zoomed in */
+    background-position: 50% 0%; /* Start from top */
+  }
+  50% {
+    background-position: 50% 100%; /* Move to bottom */
   }
   100% {
-    background-size: 100%; /* End at the normal size */
+    background-position: 50% 0%; /* Move back to top */
   }
 }
