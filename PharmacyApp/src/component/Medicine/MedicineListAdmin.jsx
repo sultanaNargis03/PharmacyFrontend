@@ -3,6 +3,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { getAuthToken } from "../../helper/axios_helper";
 import CustomNavbar from "../CustomNavbar";
+import "react-toastify/dist/ReactToastify.css";
 import {
   Form,
   FormGroup,
@@ -76,6 +77,7 @@ const MedicineListAdmin = () => {
     <Container>
       <Row className="mt-3 mb-3">
         <Col>
+          <ToastContainer />
           <Card
             className="p-4"
             style={{

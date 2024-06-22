@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { getAuthToken } from "../../helper/axios_helper";
 import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import {
   Container,
   Row,
@@ -66,9 +67,9 @@ const Checkout = () => {
 
   return (
     <Container>
-      <ToastContainer />
       <Row className="mt-3 mb-3">
         <Col sm={{ size: 6, offset: 3 }}>
+          <ToastContainer />
           {loading ? (
             <div
               className="d-flex justify-content-center align-items-center"
@@ -77,7 +78,7 @@ const Checkout = () => {
                 flexDirection: "column",
               }}
             >
-              <Spinner color="black" />
+              <Spinner color="dark" />
               <p
                 style={{
                   marginTop: "20px",

@@ -15,9 +15,10 @@ import {
   Button,
   Row,
   FormFeedback,
+  Spinner,
 } from "reactstrap";
 
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import { getAuthToken } from "../../helper/axios_helper";
 
 const Register = () => {
@@ -27,13 +28,17 @@ const Register = () => {
     email: "",
     phnNo: "",
   });
+
   const [usernameTaken, setUsernameTaken] = useState(false);
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     if (registerDto.username) {
       checkUsername(registerDto.username);
     }
   }, [registerDto.username]);
+
   const checkUsername = async (username) => {
     try {
       const response = await axios.get(
@@ -58,6 +63,15 @@ const Register = () => {
       return;
     }
     try {
+      if (
+        registerDto.username.trim() === "" ||
+        registerDto.password.trim() === "" ||
+        registerDto.email.trim() === "" ||
+        registerDto.phnNo.trim() === ""
+      ) {
+        toast.error("All fields are required");
+        return;
+      }
       await axios.post(
         "http://localhost:8088/Pharmacy/api/auth/register",
         registerDto

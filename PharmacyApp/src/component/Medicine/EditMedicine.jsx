@@ -3,6 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { getAuthToken } from "../../helper/axios_helper";
+import "react-toastify/dist/ReactToastify.css";
 import {
   Form,
   FormGroup,
@@ -212,7 +213,6 @@ const EditMedicine = () => {
           </Card>
         </Col>
       </Row>
-      <ToastContainer />
     </Container>
   );
 };

@@ -20,6 +20,7 @@ import {
   Row,
   CardTitle,
 } from "reactstrap";
+
 import { CartContext } from "../Cart/CartContext";
 
 const Login = () => {
@@ -43,8 +44,8 @@ const Login = () => {
         "http://localhost:8088/Pharmacy/api/auth/login",
         loginDto
       );
-
       toast.success("Login successful");
+
       localStorage.setItem("data", JSON.stringify(response.data));
       setAuthHeader(response.data.accessToken);
       setCurrentUserRole(response.data.role);

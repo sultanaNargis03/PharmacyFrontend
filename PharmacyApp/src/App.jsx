@@ -7,12 +7,11 @@ import {
 import "@fortawesome/fontawesome-free/css/all.min.css";
 
 import "./App.css";
-
+import "react-toastify/dist/ReactToastify.css";
 import React from "react";
 import { useState, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
 
-import "react-toastify/dist/ReactToastify.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import AddMedicine from "./component/Medicine/AddMedicine";
@@ -42,9 +41,8 @@ import { CartProvider } from "./component/Cart/CartContext";
 function App() {
   return (
     <BrowserRouter>
-      <ToastContainer />
       <CustomNavbar />
-
+      <ToastContainer />
       <Routes>
         <Route path="/" element={<Welcome />} exact />
         <Route path="/home" element={<Home />} exact />

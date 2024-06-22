@@ -12,11 +12,13 @@ export const AuthProvider = ({ children }) => {
 
   const login = () => {
     setIsAuthenticated(true);
+    localStorage.setItem("isLogedIn", "true");
   };
 
   const logout = (callback) => {
     setIsAuthenticated(false);
     localStorage.removeItem("auth_token");
+    localStorage.setItem("isLogedIn", "false");
     localStorage.removeItem("isLogedIn");
     localStorage.removeItem("data");
     localStorage.removeItem("role");

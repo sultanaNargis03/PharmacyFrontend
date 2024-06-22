@@ -4,6 +4,7 @@ import { useState, useEffect, useContext } from "react";
 import { getAuthToken } from "../../helper/axios_helper";
 import { Link } from "react-router-dom";
 import CustomNavbar from "../CustomNavbar";
+import "react-toastify/dist/ReactToastify.css";
 import {
   Form,
   FormGroup,
@@ -21,6 +22,7 @@ import {
   ListGroupItem,
   ListGroup,
 } from "reactstrap";
+import "react-toastify/dist/ReactToastify.css";
 import { CartContext } from "./CartContext";
 import { ToastContainer, toast } from "react-toastify";
 
@@ -71,6 +73,7 @@ const CartList = () => {
       <Container>
         <Row className="mt-3 mb-3">
           <Col sm={{ size: 6, offset: 3 }}>
+            <ToastContainer />
             <Card
               className="p-4"
               style={{

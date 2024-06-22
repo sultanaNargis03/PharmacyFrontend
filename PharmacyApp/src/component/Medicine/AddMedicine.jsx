@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { getAuthToken } from "../../helper/axios_helper";
+
 import {
   Form,
   FormGroup,
@@ -16,7 +17,7 @@ import {
   Row,
 } from "reactstrap";
 
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import CustomNavbar from "../CustomNavbar";
 
 const AddMedicine = () => {
@@ -74,7 +75,7 @@ const AddMedicine = () => {
               <h3>Add Medicine</h3>
             </CardHeader>
             <CardBody>
-              <Form onSubmit={handleSubmit}>
+              <Form>
                 <FormGroup>
                   <Label for="medicineName">
                     Medicine Name <span style={{ color: "red" }}>*</span>
@@ -168,6 +169,7 @@ const AddMedicine = () => {
                 <Container className="text-center">
                   <Button
                     type="submit"
+                    onClick={handleSubmit}
                     style={{
                       color: "black",
                       backgroundColor: "green",
@@ -182,7 +184,6 @@ const AddMedicine = () => {
           </Card>
         </Col>
       </Row>
-      <ToastContainer />
     </Container>
   );
 };

@@ -4,6 +4,8 @@ import { useState, useEffect, useContext } from "react";
 import { getAuthToken } from "../../helper/axios_helper";
 import { Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import {
   Form,
   FormGroup,
@@ -105,6 +107,7 @@ const AddToCart = () => {
     <Container>
       <Row className="mt-3 mb-3">
         <Col sm={{ size: 6, offset: 3 }}>
+          <ToastContainer />
           <Card
             className="p-4 text-white"
             style={{
@@ -174,7 +177,6 @@ const AddToCart = () => {
           </Card>
         </Col>
       </Row>
-      <ToastContainer />
     </Container>
   );
 };
